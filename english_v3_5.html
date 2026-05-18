@@ -200,6 +200,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .quiz-emoji{font-size:52px;margin-bottom:10px}
 .quiz-he{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark)}
 .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{-webkit-tap-highlight-color:transparent}
 .q-opt{padding:15px 10px;border:2.5px solid var(--border);border-radius:14px;background:#fafaff;font-size:16px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s;font-family:'Baloo 2',cursive;color:var(--dark)}
 .q-opt:hover:not([disabled]){border-color:var(--primary);background:var(--primary-l);transform:translateY(-2px)}
 .q-opt.correct{border-color:var(--green)!important;background:#dffff0!important;color:#1d8f6a!important;animation:pop .4s ease}
@@ -1681,6 +1682,7 @@ function initQuiz(){
   renderQuizQuestion();
 }
 function renderQuizQuestion(){
+  if(document.activeElement)document.activeElement.blur();
   const wrap=document.getElementById('quiz-wrap');
   const {words,idx,score}=quizState;
   if(idx>=words.length){renderQuizResult();return;}
@@ -1869,7 +1871,8 @@ function nextCatchRound(){
       ? 'linear-gradient(135deg,#5c6ef8,#a78bfa)'
       : ['linear-gradient(135deg,#f78fa7,#ee5a24)','linear-gradient(135deg,#43d9a1,#00b894)'][i%2];
 
-    el.onclick=()=>{
+    const catchHandler=(e)=>{
+      e.preventDefault();
       if(catchState.locked)return;
       catchState.locked=true;
       area.querySelectorAll('.falling-word').forEach(w=>{
@@ -1900,6 +1903,8 @@ function nextCatchRound(){
         else{setTimeout(()=>nextCatchRound(),900);}
       }
     };
+    el.addEventListener('touchstart',catchHandler,{passive:false});
+    el.addEventListener('click',catchHandler);
 
     el.addEventListener('animationend',()=>{
       if(catchState.locked)return;
@@ -2482,6 +2487,7 @@ function initGuess(){
   renderGuess();
 }
 function renderGuess(){
+  if(document.activeElement)document.activeElement.blur();
   const wrap = document.getElementById('guess-wrap');
   const {words, idx, score} = guessState;
   if(idx >= words.length){
