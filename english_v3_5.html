@@ -1,0 +1,2938 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<title>🌟 לומדים אנגלית בכיף!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Varela+Round&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#fff9f0; --white:#fff; --primary:#5c6ef8; --primary-l:#eef0ff;
+  --secondary:#a78bfa; --green:#43d9a1; --red:#ff6b6b; --yellow:#f7c948;
+  --orange:#f59e0b; --pink:#f78fa7; --dark:#2a2a3e; --gray:#888;
+  --border:#e0e0f0; --shadow:0 8px 32px rgba(92,110,248,.13); --r:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Varela Round',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 15% 20%,rgba(92,110,248,.06) 0%,transparent 50%),radial-gradient(circle at 85% 70%,rgba(255,107,107,.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#5c6ef8 0%,#a78bfa 50%,#f78fa7 100%);padding:18px 20px 28px;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(92,110,248,.3)}
+.hdr::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:28px;background:var(--bg);border-radius:60% 60% 0 0/28px 28px 0 0}
+.hdr h1{font-family:'Baloo 2',cursive;font-size:clamp(24px,5vw,42px);font-weight:800;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hdr p{color:rgba(255,255,255,.88);font-size:14px;margin-top:4px}
+.star-deco{position:absolute;animation:starFloat 4s ease-in-out infinite;pointer-events:none;font-size:20px}
+.star-deco:nth-child(1){top:10px;left:7%;animation-delay:0s}
+.star-deco:nth-child(2){top:18px;right:9%;animation-delay:.8s;font-size:16px}
+.star-deco:nth-child(3){bottom:30px;left:14%;animation-delay:1.6s;font-size:14px}
+.star-deco:nth-child(4){bottom:28px;right:17%;animation-delay:2.4s;font-size:22px}
+@keyframes starFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(12deg)}}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:rgba(42,42,62,.65);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .3s ease}
+.login-box{background:#fff;border-radius:28px;padding:36px 32px;max-width:430px;width:92%;box-shadow:0 24px 60px rgba(0,0,0,.22);position:relative;overflow:hidden;animation:slideUp .4s cubic-bezier(.34,1.56,.64,1)}
+.login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#5c6ef8,#a78bfa,#f78fa7,#43d9a1)}
+.login-box h2{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:var(--dark);text-align:center;margin-bottom:22px}
+.login-box h2 span{font-size:30px;display:block;margin-bottom:4px}
+.login-label{display:block;font-size:13px;color:#666;margin-bottom:7px;font-weight:600}
+.login-input,.login-select{width:100%;padding:11px 15px;border:2.5px solid var(--border);border-radius:13px;font-size:16px;font-family:'Varela Round',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
+.login-input:focus,.login-select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(92,110,248,.12)}
+.login-btn{width:100%;padding:13px;border:none;border-radius:13px;font-size:16px;font-family:'Baloo 2',cursive;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s,box-shadow .15s;color:#fff}
+.login-btn.blue{background:linear-gradient(135deg,#5c6ef8,#a78bfa);box-shadow:0 4px 15px rgba(92,110,248,.35)}
+.login-btn.green{background:linear-gradient(135deg,#43d9a1,#1a8f6a);box-shadow:0 4px 15px rgba(67,217,161,.35)}
+.login-btn:hover{transform:translateY(-2px)}
+.login-divider{text-align:center;color:#bbb;margin:14px 0;font-size:12px;display:flex;align-items:center;gap:10px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.login-msg{text-align:center;color:var(--red);font-size:13px;margin-top:8px;min-height:18px}
+
+/* USER BAR */
+.user-bar{display:none;background:#fff;padding:10px 18px;border-bottom:2px solid var(--border);align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:relative;z-index:10}
+.user-info{display:flex;align-items:center;gap:10px}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#5c6ef8,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;font-weight:800;font-family:'Baloo 2',cursive;flex-shrink:0}
+.uname{font-weight:700;color:var(--dark);font-size:15px}
+.streak-badge{background:linear-gradient(135deg,#ff9f43,#ee5a24);color:#fff;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:700;cursor:pointer}
+.hs-badge{background:linear-gradient(135deg,#f7c948,#f59e0b);color:#fff;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:700}
+.ubar-btns{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ubar-btn{background:#fff;color:#666;border:2px solid var(--border);padding:5px 11px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Varela Round',sans-serif;transition:all .2s}
+.ubar-btn:hover{border-color:var(--primary);color:var(--primary)}
+.ubar-btn.red:hover{border-color:var(--red);color:var(--red)}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(42,42,62,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:300;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:24px;padding:30px 28px;max-width:550px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);animation:slideUp .35s ease;position:relative}
+.modal h3{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--dark);margin-bottom:20px;text-align:center}
+.modal-close{position:absolute;top:16px;left:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#aaa;line-height:1}
+.modal-close:hover{color:var(--red)}
+
+/* BADGES */
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.badge-item{background:#fafaff;border:2.5px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center;transition:all .2s}
+.badge-item.earned{background:linear-gradient(135deg,#fff3b0,#ffeaa7);border-color:#f7c948;box-shadow:0 4px 12px rgba(247,201,72,.3)}
+.badge-item.locked{opacity:.45;filter:grayscale(.7)}
+.badge-emoji{font-size:30px;margin-bottom:6px}
+.badge-name{font-size:12px;font-weight:700;color:var(--dark);line-height:1.3}
+.badge-desc{font-size:10px;color:#aaa;margin-top:3px}
+
+/* LEADERBOARD */
+.lb-row{display:flex;align-items:center;gap:12px;padding:12px 15px;border-radius:12px;margin-bottom:8px;background:#fafaff;border:2px solid var(--border)}
+.lb-row:nth-child(1){background:linear-gradient(135deg,#fff3b0,#ffeaa7);border-color:#f7c948}
+.lb-row:nth-child(2){background:linear-gradient(135deg,#f0f0f8,#e8e8ff);border-color:#c0c0e0}
+.lb-row:nth-child(3){background:linear-gradient(135deg,#ffe8d0,#ffd4b0);border-color:#f59e0b}
+.lb-rank{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;width:30px;text-align:center}
+.lb-name{flex:1;font-weight:700;font-size:15px}
+.lb-score{font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;color:var(--primary)}
+.lb-streak{font-size:13px;color:#f59e0b}
+
+/* WEEKLY REPORT */
+.week-bar-wrap{display:flex;gap:8px;align-items:flex-end;height:100px;margin:15px 0}
+.week-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.week-bar{width:100%;background:linear-gradient(180deg,var(--primary),var(--secondary));border-radius:6px 6px 0 0;min-height:4px;transition:height .5s ease}
+.week-bar-label{font-size:11px;color:#aaa}
+.week-bar-num{font-size:11px;font-weight:700;color:var(--dark)}
+.week-stat{background:#fafaff;border:2px solid var(--border);border-radius:12px;padding:14px;text-align:center;margin:6px 0}
+.week-stat strong{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:var(--primary);display:block}
+.week-stat span{font-size:13px;color:#aaa}
+
+/* CATEGORY NAV */
+.cat-nav{display:flex;justify-content:center;gap:8px;padding:18px 16px 8px;position:relative;z-index:5}
+.cat-btn{background:#fff;border:2.5px solid var(--border);color:#666;padding:10px 20px;border-radius:50px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Varela Round',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.cat-btn:hover{border-color:var(--primary);color:var(--primary)}
+.cat-btn.active{background:linear-gradient(135deg,#5c6ef8,#a78bfa);border-color:transparent;color:#fff;box-shadow:0 4px 15px rgba(92,110,248,.35);transform:translateY(-2px)}
+
+/* SUB TABS */
+.sub-nav{padding:0 12px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sub-nav::-webkit-scrollbar{display:none}
+.sub-tabs{display:flex;gap:7px;min-width:max-content;padding:6px 4px}
+.tab-btn{background:#fff;border:2px solid var(--border);color:#888;padding:8px 15px;border-radius:40px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Varela Round',sans-serif;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.tab-btn:hover{border-color:var(--primary);color:var(--primary)}
+.tab-btn.active{background:var(--primary-l);border-color:var(--primary);color:var(--primary)}
+.tab-new{background:#ff6b6b;color:#fff;border-radius:6px;font-size:10px;padding:1px 5px;margin-right:-2px}
+
+/* APP CONTENT */
+.app{display:none;position:relative;z-index:1}
+.level-content{display:none;padding:20px 16px;max-width:960px;margin:0 auto;animation:fadeSlide .3s ease}
+.level-content.active{display:block}
+.level-header{text-align:center;margin-bottom:22px}
+.level-header h2{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--dark)}
+.level-header p{color:#aaa;font-size:14px;margin-top:4px}
+.prog-wrap{height:6px;background:#f0f0f8;border-radius:3px;margin:10px auto 0;max-width:300px;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--green));border-radius:3px;transition:width .5s ease}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:13px}
+.card{perspective:800px;cursor:pointer;height:145px}
+.card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);border-radius:var(--r)}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;border:3px solid transparent}
+.card-back{transform:rotateY(180deg)}
+.ct-1 .card-front{background:#fff3b0;border-color:#f7c948} .ct-1 .card-back{background:#f7c948}
+.ct-2 .card-front{background:#dff3ff;border-color:#5bc0eb} .ct-2 .card-back{background:#5bc0eb}
+.ct-3 .card-front{background:#ffe0f0;border-color:#f78fa7} .ct-3 .card-back{background:#f78fa7}
+.ct-4 .card-front{background:#dffff0;border-color:#43d9a1} .ct-4 .card-back{background:#43d9a1}
+.ct-5 .card-front{background:#ece0ff;border-color:#a78bfa} .ct-5 .card-back{background:#a78bfa}
+.ct-6 .card-front{background:#ffe8d0;border-color:#f59e0b} .ct-6 .card-back{background:#f59e0b}
+.card-emoji{font-size:34px;line-height:1}
+.card-word{font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;color:var(--dark);margin-top:5px;text-align:center}
+.card-back .card-word{color:#fff;font-size:15px}
+.card-back .card-tr{color:rgba(255,255,255,.9);font-size:13px;margin-top:3px}
+.card:hover .card-inner{transform:scale(1.04)}
+.card.flipped:hover .card-inner{transform:rotateY(180deg) scale(1.04)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,110,248,.5)}70%{box-shadow:0 0 0 12px rgba(92,110,248,0)}100%{box-shadow:0 0 0 0 rgba(92,110,248,0)}}
+.card.playing .card-inner{animation:pulse .6s}
+
+/* SENTENCES */
+.sentences-list{display:flex;flex-direction:column;gap:10px}
+.sent-card{background:#fff;border-radius:var(--r);padding:18px 22px;cursor:pointer;border:2.5px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
+.sent-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(135deg,#5c6ef8,#a78bfa)}
+.sent-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow)}
+.sent-card.open{border-color:var(--green)}
+.sent-en{font-family:'Baloo 2',cursive;font-size:17px;font-weight:700;color:var(--dark);direction:ltr;text-align:left;display:flex;align-items:center;gap:8px}
+.sent-he{font-size:14px;color:var(--green);font-weight:700;margin-top:7px;display:none}
+.sent-card.open .sent-he{display:block}
+
+/* SONGS */
+.song-card{background:#fff;border-radius:var(--r);padding:22px;margin-bottom:15px;border:2.5px solid var(--border);box-shadow:var(--shadow)}
+.song-title{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.song-line{padding:10px 14px;border-radius:12px;cursor:pointer;font-size:16px;color:var(--dark);direction:ltr;text-align:left;transition:all .2s;margin-bottom:6px;font-family:'Baloo 2',cursive;font-weight:600}
+.song-line:hover{background:var(--primary-l);color:var(--primary)}
+.song-line.active-line{background:var(--primary);color:#fff;transform:scale(1.02)}
+.song-play-all{background:linear-gradient(135deg,#5c6ef8,#a78bfa);color:#fff;border:none;border-radius:30px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Varela Round',sans-serif;box-shadow:0 4px 12px rgba(92,110,248,.3);transition:transform .15s}
+.song-play-all:hover{transform:translateY(-2px)}
+
+/* STORY */
+.story-card{background:#fff;border-radius:var(--r);padding:24px;border:2.5px solid var(--border);box-shadow:var(--shadow)}
+.story-title{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark);margin-bottom:16px;text-align:center}
+.story-sent{padding:10px 14px;border-radius:10px;cursor:pointer;transition:all .2s;direction:ltr;text-align:left;margin-bottom:4px;line-height:1.8}
+.story-sent:hover{background:var(--primary-l)}
+.story-sent.reading{background:var(--primary);border-radius:10px}
+.story-sent.reading .story-en{color:#fff}
+.story-en{font-size:16px;color:var(--dark);font-family:'Baloo 2',cursive;font-weight:600}
+.story-he{font-size:13px;color:#aaa;margin-top:2px;display:none;direction:rtl;text-align:right}
+.story-sent.open .story-he{display:block;color:var(--green)}
+
+/* MATCH GAME */
+.match-wrap{background:#fff;border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.match-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.score-pills{display:flex;gap:10px}
+.s-pill{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:7px 16px;border-radius:30px;font-size:15px;font-weight:700;font-family:'Baloo 2',cursive;box-shadow:0 3px 10px rgba(92,110,248,.3)}
+.s-pill.gold{background:linear-gradient(135deg,#f7c948,#f59e0b)}
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.match-col{display:flex;flex-direction:column;gap:8px}
+.mbtn{padding:12px 8px;border:2.5px solid var(--border);border-radius:12px;background:#fafaff;font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s;font-family:'Varela Round',sans-serif;color:var(--dark)}
+.mbtn:hover:not([disabled]){border-color:var(--primary);background:var(--primary-l);transform:translateY(-2px)}
+.mbtn.selected{border-color:var(--primary);background:var(--primary-l);box-shadow:0 0 0 3px rgba(92,110,248,.15);transform:scale(1.03)}
+.mbtn.matched{border-color:var(--green);background:#dffff0;color:#1d8f6a;pointer-events:none;animation:pop .4s cubic-bezier(.34,1.56,.64,1)}
+.mbtn.wrong{border-color:var(--red);background:#fff0f0;animation:shake .4s}
+.game-msg-area{min-height:44px;display:flex;align-items:center;justify-content:center;margin:12px 0}
+.game-msg{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;text-align:center;animation:pop .3s ease}
+.shuffle-btn{display:flex;align-items:center;gap:7px;margin:10px auto 0;padding:10px 20px;background:#fff;border:2.5px solid var(--border);border-radius:40px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Varela Round',sans-serif;color:#666;transition:all .2s}
+.shuffle-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+/* QUIZ GAME */
+.quiz-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow);max-width:600px;margin:0 auto}
+.quiz-timer-wrap{height:8px;background:#f0f0f8;border-radius:4px;margin-bottom:20px;overflow:hidden}
+.quiz-timer-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--yellow),var(--red));border-radius:4px;transition:width .1s linear}
+.quiz-question{text-align:center;margin-bottom:22px}
+.quiz-emoji{font-size:52px;margin-bottom:10px}
+.quiz-he{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark)}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q-opt{padding:15px 10px;border:2.5px solid var(--border);border-radius:14px;background:#fafaff;font-size:16px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s;font-family:'Baloo 2',cursive;color:var(--dark)}
+.q-opt:hover:not([disabled]){border-color:var(--primary);background:var(--primary-l);transform:translateY(-2px)}
+.q-opt.correct{border-color:var(--green)!important;background:#dffff0!important;color:#1d8f6a!important;animation:pop .4s ease}
+.q-opt.wrong{border-color:var(--red)!important;background:#fff0f0!important;color:#c0392b!important;animation:shake .4s}
+.quiz-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.quiz-round{font-size:14px;color:#aaa;font-weight:700}
+.quiz-result{text-align:center;padding:30px 20px}
+.quiz-result .big{font-family:'Baloo 2',cursive;font-size:48px;font-weight:800;color:var(--primary);display:block}
+.quiz-result p{font-size:18px;color:#aaa;margin:8px 0 20px}
+.game-start-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;border-radius:40px;padding:14px 30px;font-size:17px;font-weight:700;cursor:pointer;font-family:'Baloo 2',cursive;box-shadow:0 4px 15px rgba(92,110,248,.35);transition:transform .15s}
+.game-start-btn:hover{transform:translateY(-2px)}
+
+/* FILL THE WORD */
+.fill-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow);max-width:520px;margin:0 auto;text-align:center}
+.fill-word-display{font-family:'Baloo 2',cursive;font-size:38px;font-weight:800;color:var(--dark);letter-spacing:10px;margin:16px 0;direction:ltr}
+.fill-blank{color:var(--primary);display:inline-block;border-bottom:4px solid var(--primary);width:38px;text-align:center}
+.fill-hint{margin-bottom:16px}
+.fill-hint .fi-emoji{font-size:40px;display:block;margin-bottom:6px}
+.fill-hint .fi-he{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark)}
+.fill-letters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.fill-letter-btn{width:52px;height:52px;border:2.5px solid var(--border);border-radius:12px;background:#fafaff;font-size:22px;font-weight:800;cursor:pointer;font-family:'Baloo 2',cursive;color:var(--dark);transition:all .2s}
+.fill-letter-btn:hover:not([disabled]){border-color:var(--primary);background:var(--primary-l);transform:translateY(-2px)}
+.fill-letter-btn.correct{border-color:var(--green);background:#dffff0;color:#1d8f6a;animation:pop .4s}
+.fill-letter-btn.wrong{border-color:var(--red);background:#fff0f0;animation:shake .4s}
+
+/* CATCH THE WORD */
+.catch-wrap{background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);max-width:500px;margin:0 auto;position:relative}
+.catch-header{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.catch-header .s-pill{background:rgba(255,255,255,.25);box-shadow:none;font-size:14px}
+.catch-lives{display:flex;gap:5px;font-size:20px}
+.catch-area{height:360px;position:relative;background:linear-gradient(180deg,#f8f9ff 0%,#fff 100%);overflow:hidden;border-bottom:3px solid var(--border)}
+.falling-word{position:absolute;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:10px 20px;border-radius:30px;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;cursor:pointer;box-shadow:0 4px 15px rgba(92,110,248,.4);animation:fall linear forwards;white-space:nowrap;user-select:none}
+@keyframes fall{from{top:-60px}to{top:380px}}
+.falling-word:hover{filter:brightness(1.1);transform:scale(1.05)}
+.catch-hint-area{padding:16px 20px;text-align:center}
+.catch-hint-he{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark);margin-top:4px}
+.catch-hint-emoji{font-size:32px}
+
+/* MEMORY GAME */
+.mem-wrap{background:#fff;border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.mem-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:400px){.mem-grid{grid-template-columns:repeat(3,1fr);gap:7px}}
+.mem-card{height:80px;perspective:600px;cursor:pointer}
+.mem-card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .4s cubic-bezier(.4,.2,.2,1);border-radius:14px}
+.mem-card.flipped .mem-card-inner,.mem-card.matched .mem-card-inner{transform:rotateY(180deg)}
+.mem-card-front,.mem-card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;border:2.5px solid transparent}
+.mem-card-front{background:linear-gradient(135deg,#5c6ef8,#a78bfa);border-color:#5c6ef8;font-size:24px;color:#fff;font-family:'Baloo 2',cursive;box-shadow:0 4px 12px rgba(92,110,248,.25)}
+.mem-card-front::after{content:'?';font-size:26px}
+.mem-card-back{transform:rotateY(180deg);background:#fff;border-color:var(--border);font-size:14px;color:var(--dark);font-family:'Baloo 2',cursive;text-align:center;padding:6px;line-height:1.3}
+.mem-card.matched .mem-card-back{background:#dffff0;border-color:var(--green);color:#1d8f6a}
+.mem-card:hover:not(.flipped):not(.matched) .mem-card-front{filter:brightness(1.08);transform:scale(1.04)}
+.mem-card.matched{pointer-events:none;animation:pop .4s cubic-bezier(.34,1.56,.64,1)}
+
+/* NUMBER CARD special display */
+.num-display{font-family:'Baloo 2',cursive;font-size:30px;font-weight:800;color:var(--primary);background:var(--primary-l);border-radius:10px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;margin:0 auto}
+
+/* SETTINGS MODAL */
+.settings-group{margin-bottom:20px}
+.settings-group h4{font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.setting-row:last-child{border-bottom:none}
+.setting-label{font-size:14px;color:var(--dark);font-weight:600}
+.setting-sub{font-size:12px;color:#aaa;margin-top:2px}
+/* Toggle switch */
+.toggle{position:relative;width:48px;height:26px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#ccc;border-radius:26px;cursor:pointer;transition:.3s}
+.toggle-slider::before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.toggle-slider{background:var(--primary)}
+.toggle input:checked+.toggle-slider::before{transform:translateX(22px)}
+/* Volume slider */
+input[type=range].vol-slider{width:100px;accent-color:var(--primary)}
+
+/* MUSIC BAR */
+.music-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-top:2px solid var(--border);padding:8px 18px;display:none;align-items:center;gap:12px;z-index:50;box-shadow:0 -4px 15px rgba(0,0,0,.08)}
+.music-bar.visible{display:flex}
+.music-note{font-size:18px;animation:noteBounce 1s ease-in-out infinite}
+@keyframes noteBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.music-title{font-size:13px;color:#888;flex:1}
+.music-mini-btn{background:none;border:2px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:13px;color:#666;transition:all .2s}
+.music-mini-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+/* GRADE PICKER */
+.grade-pick-btn{flex:1;padding:10px 0;border:2.5px solid var(--border);border-radius:12px;background:#fafaff;font-size:18px;font-weight:800;font-family:'Baloo 2',cursive;color:#888;cursor:pointer;transition:all .2s}
+.grade-pick-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 3px 10px rgba(92,110,248,.3)}
+.grade-badge{background:linear-gradient(135deg,#5c6ef8,#a78bfa);color:#fff;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:700}
+
+/* JOURNEY PATH */
+.journey-grade-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.jg-tab{padding:8px 20px;border:2.5px solid var(--border);border-radius:30px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Varela Round',sans-serif;background:#fff;color:#888;transition:all .2s}
+.jg-tab.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.journey-section{margin-bottom:28px}
+.journey-section-title{font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;color:#aaa;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.journey-section-title::after{content:'';flex:1;height:2px;background:var(--border);border-radius:2px}
+.journey-nodes{display:flex;flex-wrap:wrap;gap:14px}
+.j-node{background:#fff;border:3px solid var(--border);border-radius:20px;padding:16px 14px;width:140px;text-align:center;cursor:pointer;transition:all .25s;position:relative}
+.j-node:hover:not(.locked){transform:translateY(-4px);box-shadow:0 8px 20px rgba(92,110,248,.18)}
+.j-node.unlocked{border-color:var(--primary)}
+.j-node.completed{border-color:var(--green);background:#f0fff8}
+.j-node.locked{opacity:.5;cursor:not-allowed;filter:grayscale(.5)}
+.j-node.current{border-color:var(--primary);box-shadow:0 0 0 4px rgba(92,110,248,.18);animation:jPulse 2s ease-in-out infinite}
+@keyframes jPulse{0%,100%{box-shadow:0 0 0 4px rgba(92,110,248,.18)}50%{box-shadow:0 0 0 8px rgba(92,110,248,.08)}}
+.j-node-emoji{font-size:32px;margin-bottom:6px}
+.j-node-name{font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;color:var(--dark);line-height:1.3}
+.j-node-prog{height:5px;background:#f0f0f8;border-radius:3px;margin-top:8px;overflow:hidden}
+.j-node-prog-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--green));border-radius:3px;transition:width .5s}
+.j-lock-icon{position:absolute;top:8px;right:8px;font-size:14px}
+.j-check-icon{position:absolute;top:8px;right:8px;font-size:14px;color:var(--green)}
+.j-grade-req{font-size:10px;color:#aaa;margin-top:4px}
+
+/* TYPING GAME */
+.type-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.type-clue{text-align:center;margin-bottom:20px}
+.type-clue-emoji{font-size:56px;margin-bottom:8px}
+.type-clue-he{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--dark)}
+.type-input-row{display:flex;gap:8px;justify-content:center;margin-bottom:16px;direction:ltr}
+.type-letter{width:44px;height:50px;border:3px solid var(--border);border-radius:10px;text-align:center;font-size:22px;font-weight:800;font-family:'Baloo 2',cursive;background:#fafaff;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:all .2s;flex-shrink:0}
+.type-letter.filled{border-color:var(--primary);background:var(--primary-l)}
+.type-letter.correct{border-color:var(--green);background:#dffff0;color:var(--green);animation:pop .3s ease}
+.type-letter.wrong{border-color:var(--red);background:#fff0f0;color:var(--red);animation:shake .3s}
+.type-letter.current{border-color:var(--primary);box-shadow:0 0 0 3px rgba(92,110,248,.2)}
+.type-keyboard{display:flex;flex-direction:column;gap:6px;align-items:center}
+.type-kb-row{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.type-key{width:36px;height:36px;border:2px solid var(--border);border-radius:8px;background:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:'Baloo 2',cursive;color:var(--dark);transition:all .15s;display:flex;align-items:center;justify-content:center}
+.type-key:hover{background:var(--primary-l);border-color:var(--primary)}
+.type-key:active{transform:scale(.93)}
+.type-key.del{width:52px;font-size:12px;background:#fff0f0;border-color:#f78fa7;color:var(--red)}
+.type-key.hint-key{background:#fff3b0;border-color:#f7c948;color:#8a6d00;font-size:11px;width:52px}
+.type-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.type-hint-used{font-size:12px;color:#aaa}
+
+/* GUESS GAME */
+.guess-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.guess-def{background:var(--primary-l);border-radius:14px;padding:16px 20px;text-align:center;margin-bottom:20px;border:2px solid var(--primary)}
+.guess-def-text{font-family:'Baloo 2',cursive;font-size:18px;font-weight:700;color:var(--dark);line-height:1.5}
+.guess-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.guess-opt{padding:14px 10px;border:2.5px solid var(--border);border-radius:14px;background:#fafaff;font-size:16px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s;font-family:'Baloo 2',cursive;color:var(--dark)}
+.guess-opt:hover:not([disabled]){border-color:var(--primary);background:var(--primary-l);transform:translateY(-2px)}
+.guess-opt.correct{border-color:var(--green)!important;background:#dffff0!important;animation:pop .4s ease}
+.guess-opt.wrong{border-color:var(--red)!important;background:#fff0f0!important;animation:shake .4s}
+
+/* 2-PLAYER RACE */
+.race-setup{background:#fff;border-radius:24px;padding:28px;box-shadow:var(--shadow);text-align:center;max-width:500px;margin:0 auto}
+.race-player-setup{display:flex;gap:12px;margin:16px 0;flex-wrap:wrap}
+.race-p-field{flex:1;min-width:120px}
+.race-p-label{font-size:13px;font-weight:700;margin-bottom:6px;display:block}
+.race-p1-label{color:#5c6ef8}.race-p2-label{color:#f78fa7}
+.race-arena{background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.race-top{background:linear-gradient(135deg,#2a2a3e,#3d3d5c);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.race-score-p1{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#a0b4ff}
+.race-score-p2{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#ffb4c8}
+.race-word-display{text-align:center;padding:20px;background:#fafaff;border-bottom:2px solid var(--border)}
+.race-word-emoji{font-size:48px;margin-bottom:6px}
+.race-word-he{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark)}
+.race-cols{display:grid;grid-template-columns:1fr 1fr}
+.race-col{padding:14px;display:flex;flex-direction:column;gap:8px}
+.race-col.p1{border-right:2px solid var(--border);background:#f8f9ff}
+.race-col.p2{background:#fff8fc}
+.race-col-label{font-size:12px;font-weight:800;text-align:center;margin-bottom:6px;padding:4px 10px;border-radius:10px}
+.race-col.p1 .race-col-label{background:#eef0ff;color:#5c6ef8}
+.race-col.p2 .race-col-label{background:#fff0f5;color:#f78fa7}
+.race-opt{padding:11px 8px;border:2.5px solid var(--border);border-radius:10px;background:#fff;font-size:14px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s;font-family:'Varela Round',sans-serif}
+.race-col.p1 .race-opt:hover:not([disabled]){border-color:#5c6ef8;background:#eef0ff}
+.race-col.p2 .race-opt:hover:not([disabled]){border-color:#f78fa7;background:#fff0f5}
+.race-opt.correct-p1{background:#eef0ff!important;border-color:#5c6ef8!important;animation:pop .3s}
+.race-opt.correct-p2{background:#fff0f5!important;border-color:#f78fa7!important;animation:pop .3s}
+.race-opt.wrong-r{background:#fff0f0!important;border-color:#ff6b6b!important;animation:shake .3s}
+.race-progress{display:flex;height:10px;background:#f0f0f8;margin:0 14px 14px}
+.race-prog-p1{background:linear-gradient(90deg,#5c6ef8,#a78bfa);transition:width .4s;border-radius:5px 0 0 5px}
+.race-prog-p2{background:linear-gradient(90deg,#f78fa7,#f59e0b);transition:width .4s;margin-right:0;margin-left:auto;border-radius:0 5px 5px 0}
+.race-win{text-align:center;padding:32px 20px;background:#fff}
+.race-win .big{font-family:'Baloo 2',cursive;font-size:40px;font-weight:800;display:block;margin:8px 0}
+
+/* SENTENCE BUILDER */
+.sb-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.sb-preview{background:linear-gradient(135deg,#eef0ff,#f5f0ff);border-radius:16px;padding:18px 22px;text-align:center;margin-bottom:22px;min-height:70px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;border:2.5px solid var(--primary)}
+.sb-sentence-en{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark);direction:ltr}
+.sb-sentence-he{font-size:14px;color:#a78bfa;font-weight:700}
+.sb-word-slot{display:inline-block;min-width:80px;border-bottom:3px solid var(--primary);padding:2px 8px;color:var(--primary);font-family:'Baloo 2',cursive;font-weight:800}
+.sb-section{margin-bottom:16px}
+.sb-section-label{font-size:13px;font-weight:700;color:#aaa;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.sb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.sb-chip{padding:8px 16px;border:2.5px solid var(--border);border-radius:30px;cursor:pointer;font-size:15px;font-weight:700;font-family:'Varela Round',sans-serif;background:#fafaff;color:var(--dark);transition:all .2s}
+.sb-chip:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.sb-chip.selected-color{background:var(--primary);border-color:var(--primary);color:#fff}
+.sb-chip.selected-animal{background:#43d9a1;border-color:#43d9a1;color:#fff}
+.sb-chip.selected-adj{background:#f7c948;border-color:#f59e0b;color:#2a2a3e}
+.sb-actions{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.sb-emoji-preview{font-size:36px;margin-bottom:4px}
+.sb-score-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+
+/* SENTENCE MATCH */
+.sm-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.sm-sentence{background:linear-gradient(135deg,#eef0ff,#f5f0ff);border-radius:14px;padding:16px 20px;text-align:center;margin-bottom:20px;border:2.5px solid var(--primary)}
+.sm-sentence-text{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark);direction:ltr}
+.sm-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:16px}
+.sm-opt{background:#fafaff;border:3px solid var(--border);border-radius:16px;padding:16px 10px;cursor:pointer;text-align:center;transition:all .25s;font-family:'Baloo 2',cursive}
+.sm-opt:hover:not([disabled]){border-color:var(--primary);transform:translateY(-3px);box-shadow:0 6px 16px rgba(92,110,248,.2)}
+.sm-opt.correct{border-color:var(--green)!important;background:#dffff0!important;animation:pop .4s ease}
+.sm-opt.wrong{border-color:var(--red)!important;background:#fff0f0!important;animation:shake .35s}
+.sm-opt-emoji{font-size:36px;display:block;margin-bottom:6px}
+.sm-opt-label{font-size:13px;color:#888;font-family:'Varela Round',sans-serif}
+
+/* LETTER GAME */
+.lg-wrap{background:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow);max-width:520px;margin:0 auto}
+.lg-mode-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.lg-mode-btn{padding:8px 16px;border:2.5px solid var(--border);border-radius:30px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Varela Round',sans-serif;background:#fff;color:#888;transition:all .2s}
+.lg-mode-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.lg-word-display{text-align:center;margin-bottom:20px}
+.lg-big-word{font-family:'Baloo 2',cursive;font-size:44px;font-weight:800;color:var(--dark);direction:ltr;letter-spacing:4px;cursor:pointer;transition:all .2s}
+.lg-big-word:hover{color:var(--primary)}
+.lg-word-emoji{font-size:40px;margin-bottom:8px}
+.lg-word-he{font-size:16px;color:#aaa;margin-top:4px}
+.lg-question{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:var(--dark);text-align:center;margin-bottom:16px;min-height:28px}
+.lg-letter-options{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.lg-letter-btn{width:56px;height:56px;border:2.5px solid var(--border);border-radius:14px;background:#fafaff;font-size:26px;font-weight:800;cursor:pointer;font-family:'Baloo 2',cursive;color:var(--dark);transition:all .2s;display:flex;align-items:center;justify-content:center}
+.lg-letter-btn:hover:not([disabled]){border-color:var(--primary);background:var(--primary-l);transform:scale(1.08)}
+.lg-letter-btn.correct{border-color:var(--green);background:#dffff0;color:#1d8f6a;animation:pop .4s ease}
+.lg-letter-btn.wrong{border-color:var(--red);background:#fff0f0;animation:shake .35s}
+/* vowel highlight */
+.vowel-highlight{color:var(--primary);text-decoration:underline wavy var(--primary)}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:12px 22px;border-radius:30px;font-size:15px;font-weight:700;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* CONFETTI */
+.confetti-piece{position:fixed;width:10px;height:10px;border-radius:2px;pointer-events:none;z-index:9999;animation:cfFall ease-in forwards}
+@keyframes cfFall{0%{transform:translateY(-20px) rotateZ(0deg);opacity:1}100%{transform:translateY(100vh) rotateZ(720deg);opacity:0}}
+
+/* SHARED */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(28px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+@media(max-width:480px){
+  .cards-grid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:9px}
+  .card{height:125px}.card-emoji{font-size:26px}
+  .quiz-options{grid-template-columns:1fr 1fr}
+  .match-cols{gap:6px}.mbtn{font-size:13px;padding:10px 6px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <span class="star-deco">⭐</span><span class="star-deco">🌟</span>
+  <span class="star-deco">✨</span><span class="star-deco">💫</span>
+  <h1>🌈 לומדים אנגלית בכיף!</h1>
+  <p>לחצו על הכרטיסיות כדי לגלות ולשמוע 🔊</p>
+</div>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-box">
+    <h2><span>👋</span>שלום! מי אתה/את?</h2>
+    <label class="login-label">ילדים שכבר משחקים:</label>
+    <select id="user-select" class="login-select">
+      <option value="">-- בחר/י ילד/ה --</option>
+    </select>
+    <button class="login-btn green" onclick="selectExistingUser()">🚀 כניסה</button>
+    <div class="login-divider">או</div>
+    <label class="login-label">שם חדש:</label>
+    <input id="new-user-name" class="login-input" type="text" placeholder="למשל: נועה, יוסי...">
+    <button class="login-btn blue" onclick="addNewUser()">✨ הצטרפות חדשה</button>
+    <div class="login-msg" id="login-msg"></div>
+  </div>
+</div>
+
+<!-- USER BAR -->
+<div class="user-bar" id="user-bar">
+  <div class="user-info">
+    <div class="avatar" id="user-avatar">?</div>
+    <div>
+      <div class="uname" id="ubar-name">—</div>
+    </div>
+    <div class="streak-badge" onclick="openModal('weekly-modal')" title="דוח שבועי">🔥 <span id="streak-display">0</span> ימים</div>
+    <div class="hs-badge">🏆 <span id="hs-display">0</span></div>
+  </div>
+  <div class="ubar-btns">
+    <button class="ubar-btn" onclick="openModal('badges-modal')">🏅 תגים</button>
+    <button class="ubar-btn" onclick="openModal('lb-modal')">📊 שיאים</button>
+    <button class="ubar-btn" onclick="openModal('weekly-modal')">📅 דוח</button>
+    <button class="ubar-btn" onclick="openModal('settings-modal')">⚙️ הגדרות</button>
+    <button class="ubar-btn red" onclick="logout()">התנתקות</button>
+  </div>
+</div>
+
+<!-- BADGES MODAL -->
+<div class="modal-overlay" id="badges-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('badges-modal')">✕</button>
+    <h3>🏅 התגים שלך</h3>
+    <div class="badges-grid" id="badges-grid"></div>
+  </div>
+</div>
+
+<!-- LEADERBOARD MODAL -->
+<div class="modal-overlay" id="lb-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('lb-modal')">✕</button>
+    <h3>📊 לוח שיאים</h3>
+    <div id="lb-content"></div>
+  </div>
+</div>
+
+<!-- WEEKLY MODAL -->
+<div class="modal-overlay" id="weekly-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('weekly-modal')">✕</button>
+    <h3>📅 דוח שבועי</h3>
+    <div id="weekly-content"></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('settings-modal')">✕</button>
+    <h3>⚙️ הגדרות</h3>
+
+    <div class="settings-group">
+      <div class="setting-row">
+        <div><div class="setting-label">מוזיקת רקע</div><div class="setting-sub">מנגינה עדינה ברקע</div></div>
+        <label class="toggle"><input type="checkbox" id="set-music" onchange="settingMusicToggle(this.checked)"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="setting-row">
+        <div><div class="setting-label">עוצמת קול מוזיקה</div></div>
+        <input type="range" class="vol-slider" id="set-music-vol" min="0" max="100" value="30" oninput="settingMusicVol(this.value)">
+      </div>
+      <div class="setting-row">
+        <div><div class="setting-label">סגנון מוזיקה</div></div>
+        <select class="login-select" style="width:auto;padding:6px 10px;font-size:13px" id="set-music-style" onchange="settingMusicStyle(this.value)">
+          <option value="lullaby">🎠 עדין</option>
+          <option value="upbeat">🎶 קצבי</option>
+          <option value="piano">🎹 פסנתר</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h4>🔊 אפקטי קול</h4>
+      <div class="setting-row">
+        <div><div class="setting-label">צלילי משחק</div><div class="setting-sub">צלילים בלחיצה על כרטיסיות</div></div>
+        <label class="toggle"><input type="checkbox" id="set-sfx" checked onchange="settingSfx(this.checked)"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="setting-row">
+        <div><div class="setting-label">קריאת מילים</div><div class="setting-sub">הקראה אוטומטית בהפיכת כרטיס</div></div>
+        <label class="toggle"><input type="checkbox" id="set-voice" checked onchange="settingVoice(this.checked)"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h4>🎨 תצוגה</h4>
+      <div class="setting-row">
+        <div><div class="setting-label">צבע ערכת נושא</div></div>
+        <div style="display:flex;gap:8px">
+          <div onclick="setTheme('#5c6ef8')" style="width:24px;height:24px;border-radius:50%;background:#5c6ef8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 0 2px #5c6ef8"></div>
+          <div onclick="setTheme('#e91e8c')" style="width:24px;height:24px;border-radius:50%;background:#e91e8c;cursor:pointer"></div>
+          <div onclick="setTheme('#00b894')" style="width:24px;height:24px;border-radius:50%;background:#00b894;cursor:pointer"></div>
+          <div onclick="setTheme('#f59e0b')" style="width:24px;height:24px;border-radius:50%;background:#f59e0b;cursor:pointer"></div>
+          <div onclick="setTheme('#e74c3c')" style="width:24px;height:24px;border-radius:50%;background:#e74c3c;cursor:pointer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MUSIC BAR -->
+<div class="music-bar" id="music-bar">
+  <span class="music-note">🎵</span>
+  <span class="music-title" id="music-title">מנגינת רקע</span>
+  <button class="music-mini-btn" onclick="toggleMusicPlay()">⏸️</button>
+  <button class="music-mini-btn" onclick="closeModal('settings-modal');openModal('settings-modal')">⚙️</button>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+  <!-- CATEGORY NAV -->
+  <div class="cat-nav">
+    <button class="cat-btn active" id="cat-words" onclick="showCategory('words')">📚 מילים</button>
+    <button class="cat-btn" id="cat-journey" onclick="showCategory('journey')">🗺️ מסע לימוד</button>
+    <button class="cat-btn" id="cat-games" onclick="showCategory('games')">🎮 משחקים</button>
+    <button class="cat-btn" id="cat-read" onclick="showCategory('read')">📖 קרא ושמע</button>
+  </div>
+
+  <!-- WORDS SUB-NAV -->
+  <div class="sub-nav" id="subnav-words">
+    <div class="sub-tabs">
+      <button class="tab-btn active" onclick="showLevel('lvl-abc',this,'words')">🔤 ABC</button>
+      <button class="tab-btn" onclick="showLevel('lvl-easy',this,'words')">🎨 צבעים+חיות</button>
+      <button class="tab-btn" onclick="showLevel('lvl-med',this,'words')">👨‍👩‍👧 משפחה+אוכל</button>
+      <button class="tab-btn" onclick="showLevel('lvl-body',this,'words')">🦴 גוף</button>
+      <button class="tab-btn" onclick="showLevel('lvl-nums',this,'words')">🔢 מספרים</button>
+      <button class="tab-btn" onclick="showLevel('lvl-school',this,'words')">🎒 בית ספר</button>
+      <button class="tab-btn" onclick="showLevel('lvl-weather',this,'words')">☀️ מזג אוויר</button>
+      <button class="tab-btn" onclick="showLevel('lvl-clothes',this,'words')">👕 ביגוד <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-transport',this,'words')">🚗 תחבורה <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-jobs',this,'words')">👷 מקצועות <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-days',this,'words')">📅 ימים וחודשים <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-emotions',this,'words')">😊 רגשות <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-home',this,'words')">🏠 בית <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-garden',this,'words')">🌻 גינה וטבע <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-holidays',this,'words')">🎉 חגים <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-adj',this,'words')">⭐ תיאורים <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-objects',this,'words')">🪣 חפצים <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" onclick="showLevel('lvl-vocab2',this,'words')">📖 אוצר מילים 2 <span class="tab-new">חדש</span></button>
+    </div>
+  </div>
+
+  <!-- JOURNEY SUB-NAV (empty — full-page view) -->
+  <div class="sub-nav" id="subnav-journey" style="display:none"></div>
+
+  <!-- GAMES SUB-NAV -->
+  <div class="sub-nav" id="subnav-games" style="display:none">
+    <div class="sub-tabs">
+      <button class="tab-btn active" id="gtab-match" onclick="showLevel('lvl-match',this,'games')">🧩 התאמה</button>
+      <button class="tab-btn" id="gtab-quiz" onclick="showLevel('lvl-quiz',this,'games');initQuiz()">❓ חידון</button>
+      <button class="tab-btn" id="gtab-fill" onclick="showLevel('lvl-fill',this,'games');initFill()">✏️ השלם מילה</button>
+      <button class="tab-btn" id="gtab-catch" onclick="showLevel('lvl-catch',this,'games')">⚡ תפוס מילה</button>
+      <button class="tab-btn" id="gtab-memory" onclick="showLevel('lvl-memory',this,'games');initMemory()">🃏 זיכרון</button>
+      <button class="tab-btn" id="gtab-type" onclick="showLevel('lvl-type',this,'games');initTyping()">⌨️ כתיבה <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" id="gtab-guess" onclick="showLevel('lvl-guess',this,'games');initGuess()">🔍 ניחוש <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" id="gtab-race" onclick="showLevel('lvl-race',this,'games');initRace()">🏁 מרוץ 2 שחקנים <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" id="gtab-sentbuild" onclick="showLevel('lvl-sentbuild',this,'games');initSentBuilder()">🔨 בנה משפט <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" id="gtab-sentmatch" onclick="showLevel('lvl-sentmatch',this,'games');initSentMatch()">🖼️ משפט-תמונה <span class="tab-new">חדש</span></button>
+      <button class="tab-btn" id="gtab-lettergame" onclick="showLevel('lvl-lettergame',this,'games');initLetterGame()">🔤 אות ראשונה/אחרונה <span class="tab-new">חדש</span></button>
+    </div>
+  </div>
+
+  <!-- READ SUB-NAV -->
+  <div class="sub-nav" id="subnav-read" style="display:none">
+    <div class="sub-tabs">
+      <button class="tab-btn active" onclick="showLevel('lvl-sentences',this,'read')">💬 משפטים</button>
+      <button class="tab-btn" onclick="showLevel('lvl-songs',this,'read')">🎵 שירים</button>
+      <button class="tab-btn" onclick="showLevel('lvl-story',this,'read')">📖 סיפור קצר</button>
+    </div>
+  </div>
+
+  <!-- ===== JOURNEY VIEW ===== -->
+  <div id="lvl-journey" class="level-content" style="display:none">
+    <div class="level-header">
+      <h2>🗺️ מסע הלימוד שלך</h2>
+      <p id="journey-grade-label">השלם נושאים כדי לפתוח חדשים!</p>
+    </div>
+    <div id="journey-path"></div>
+  </div>
+
+  <!-- ===== WORD LEVELS ===== -->
+  <div id="lvl-abc" class="level-content active">
+    <div class="level-header"><h2>🔤 הכרת אותיות ה-ABC</h2><p>לחצו לשמוע ולגלות!</p><div class="prog-wrap"><div class="prog-bar" id="prog-abc" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-abc"></div>
+  </div>
+  <div id="lvl-easy" class="level-content">
+    <div class="level-header"><h2>🎨 צבעים וחיות</h2><p>לחצו לשמוע!</p><div class="prog-wrap"><div class="prog-bar" id="prog-easy" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-easy"></div>
+  </div>
+  <div id="lvl-med" class="level-content">
+    <div class="level-header"><h2>👨‍👩‍👧 משפחה ואוכל</h2><p>לחצו לשמוע!</p><div class="prog-wrap"><div class="prog-bar" id="prog-med" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-med"></div>
+  </div>
+  <div id="lvl-body" class="level-content">
+    <div class="level-header"><h2>🦴 גוף האדם</h2><p>למדו את חלקי הגוף!</p><div class="prog-wrap"><div class="prog-bar" id="prog-body" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-body"></div>
+  </div>
+  <div id="lvl-nums" class="level-content">
+    <div class="level-header"><h2>🔢 מספרים 1–20</h2><p>מספרים באנגלית!</p><div class="prog-wrap"><div class="prog-bar" id="prog-nums" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-nums"></div>
+  </div>
+  <div id="lvl-school" class="level-content">
+    <div class="level-header"><h2>🎒 בית ספר</h2><p>כלים וחפצים בכיתה!</p><div class="prog-wrap"><div class="prog-bar" id="prog-school" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-school"></div>
+  </div>
+  <div id="lvl-weather" class="level-content">
+    <div class="level-header"><h2>☀️ מזג אוויר ועונות</h2><p>מה מזג האוויר היום?</p><div class="prog-wrap"><div class="prog-bar" id="prog-weather" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-weather"></div>
+  </div>
+  <div id="lvl-clothes" class="level-content">
+    <div class="level-header"><h2>👕 ביגוד</h2><p>מה אתם לובשים?</p><div class="prog-wrap"><div class="prog-bar" id="prog-clothes" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-clothes"></div>
+  </div>
+  <div id="lvl-transport" class="level-content">
+    <div class="level-header"><h2>🚗 כלי תחבורה</h2><p>איך מגיעים למקום?</p><div class="prog-wrap"><div class="prog-bar" id="prog-transport" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-transport"></div>
+  </div>
+  <div id="lvl-jobs" class="level-content">
+    <div class="level-header"><h2>👷 מקצועות</h2><p>מה תרצו להיות?</p><div class="prog-wrap"><div class="prog-bar" id="prog-jobs" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-jobs"></div>
+  </div>
+  <div id="lvl-days" class="level-content">
+    <div class="level-header"><h2>📅 ימים וחודשים</h2><p>מה היום ומה החודש?</p><div class="prog-wrap"><div class="prog-bar" id="prog-days" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-days"></div>
+  </div>
+
+  <div id="lvl-emotions" class="level-content">
+    <div class="level-header"><h2>😊 רגשות ותחושות</h2><p>איך אתם מרגישים?</p><div class="prog-wrap"><div class="prog-bar" id="prog-emotions" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-emotions"></div>
+  </div>
+  <div id="lvl-home" class="level-content">
+    <div class="level-header"><h2>🏠 חדרים וחפצי בית</h2><p>מה יש בבית שלכם?</p><div class="prog-wrap"><div class="prog-bar" id="prog-home" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-home"></div>
+  </div>
+  <div id="lvl-garden" class="level-content">
+    <div class="level-header"><h2>🌻 גינה וטבע</h2><p>מה גדל ומה חי בטבע?</p><div class="prog-wrap"><div class="prog-bar" id="prog-garden" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-garden"></div>
+  </div>
+  <div id="lvl-holidays" class="level-content">
+    <div class="level-header"><h2>🎉 חגים ואירועים</h2><p>מה חוגגים?</p><div class="prog-wrap"><div class="prog-bar" id="prog-holidays" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-holidays"></div>
+  </div>
+
+  <div id="lvl-adj" class="level-content">
+    <div class="level-header"><h2>⭐ תיאורים — שמות תואר</h2><p>big, small, hot, cold... לחצו לשמוע!</p><div class="prog-wrap"><div class="prog-bar" id="prog-adj" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-adj"></div>
+  </div>
+  <div id="lvl-objects" class="level-content">
+    <div class="level-header"><h2>🪣 חפצים יומיומיים</h2><p>pot, pan, bus, can... מילים מהספר!</p><div class="prog-wrap"><div class="prog-bar" id="prog-objects" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-objects"></div>
+  </div>
+
+  <div id="lvl-vocab2" class="level-content">
+    <div class="level-header"><h2>📖 אוצר מילים 2</h2><p>farm, donkey, fox, taxi, doctor, umbrella ועוד!</p><div class="prog-wrap"><div class="prog-bar" id="prog-vocab2" style="width:0"></div></div></div>
+    <div class="cards-grid" id="grid-vocab2"></div>
+  </div>
+
+  <!-- ===== GAME LEVELS ===== -->
+  <div id="lvl-match" class="level-content" style="display:none">
+    <div class="level-header"><h2>🧩 משחק התאמה</h2><p>חברו מילה אנגלית לתרגום שלה!</p></div>
+    <div class="match-wrap">
+      <div class="match-top">
+        <div class="score-pills">
+          <div class="s-pill">⭐ <span id="match-score">0</span></div>
+          <div class="s-pill gold">🏆 <span id="match-hs">0</span></div>
+        </div>
+        <button class="shuffle-btn" onclick="initMatchGame()">🔀 ערבב</button>
+      </div>
+      <div class="prog-wrap" style="max-width:100%;margin-bottom:14px"><div class="prog-bar" id="match-prog" style="width:0"></div></div>
+      <div class="match-cols">
+        <div class="match-col" id="match-en"></div>
+        <div class="match-col" id="match-he"></div>
+      </div>
+      <div class="game-msg-area"><div class="game-msg" id="match-msg"></div></div>
+    </div>
+  </div>
+
+  <div id="lvl-quiz" class="level-content" style="display:none">
+    <div class="level-header"><h2>❓ חידון מהיר</h2><p>מהרו לבחור לפני שהזמן נגמר!</p></div>
+    <div class="quiz-wrap" id="quiz-wrap"></div>
+  </div>
+
+  <div id="lvl-fill" class="level-content" style="display:none">
+    <div class="level-header"><h2>✏️ השלם את המילה</h2><p>איזו אות חסרה?</p></div>
+    <div class="fill-wrap" id="fill-wrap"></div>
+  </div>
+
+  <div id="lvl-catch" class="level-content" style="display:none">
+    <div class="level-header"><h2>⚡ תפוס את המילה!</h2><p>לחצו על המילה האנגלית הנכונה לפני שהיא נופלת!</p></div>
+    <div class="catch-wrap" id="catch-wrap">
+      <div id="catch-start" style="text-align:center;padding:40px 20px">
+        <div style="font-size:52px;margin-bottom:12px">⚡</div>
+        <div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark);margin-bottom:8px">מוכנים?</div>
+        <div style="color:#aaa;font-size:14px;margin-bottom:20px">מילים יפלו — לחצו על הנכונה!</div>
+        <button class="game-start-btn" onclick="initCatch()">▶️ התחלה</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lvl-memory" class="level-content" style="display:none">
+    <div class="level-header"><h2>🃏 משחק זיכרון</h2><p>גלו זוגות — אנגלית + עברית! לחצו על שתי כרטיסיות להתאמה</p></div>
+    <div class="mem-wrap">
+      <div class="mem-top">
+        <div class="score-pills">
+          <div class="s-pill">🔄 <span id="mem-moves">0</span> ניסיונות</div>
+          <div class="s-pill" style="background:linear-gradient(135deg,#43d9a1,#1a8f6a)">✅ <span id="mem-found">0</span>/<span id="mem-total">0</span></div>
+        </div>
+        <button class="shuffle-btn" onclick="initMemory()">🔀 משחק חדש</button>
+      </div>
+      <div class="prog-wrap" style="max-width:100%;margin-bottom:14px"><div class="prog-bar" id="mem-prog" style="width:0"></div></div>
+      <div class="mem-grid" id="mem-grid"></div>
+      <div class="game-msg-area"><div class="game-msg" id="mem-msg"></div></div>
+    </div>
+  </div>
+
+  <!-- TYPING GAME -->
+  <div id="lvl-type" class="level-content" style="display:none">
+    <div class="level-header"><h2>⌨️ כתיבה באנגלית</h2><p>ראו את הרמז וכתבו את המילה באנגלית!</p></div>
+    <div id="type-wrap" style="max-width:500px;margin:0 auto"></div>
+  </div>
+
+  <!-- GUESS GAME -->
+  <div id="lvl-guess" class="level-content" style="display:none">
+    <div class="level-header"><h2>🔍 ניחוש לפי הגדרה</h2><p>קראו את ההגדרה ובחרו את המילה הנכונה!</p></div>
+    <div id="guess-wrap" style="max-width:560px;margin:0 auto"></div>
+  </div>
+
+  <!-- 2-PLAYER RACE -->
+  <div id="lvl-race" class="level-content" style="display:none">
+    <div class="level-header"><h2>🏁 מרוץ 2 שחקנים</h2><p>שני שחקנים על אותו מסך — מי יגיע ל-10 ראשון?</p></div>
+    <div id="race-wrap"></div>
+  </div>
+
+  <!-- SENTENCE BUILDER -->
+  <div id="lvl-sentbuild" class="level-content" style="display:none">
+    <div class="level-header"><h2>🔨 בנה משפט</h2><p>בחרו צבע, חיה ותיאור כדי לבנות משפט באנגלית!</p></div>
+    <div id="sentbuild-wrap" style="max-width:600px;margin:0 auto"></div>
+  </div>
+
+  <!-- SENTENCE MATCH (like Exercise 32) -->
+  <div id="lvl-sentmatch" class="level-content" style="display:none">
+    <div class="level-header"><h2>🖼️ התאם משפט לתמונה</h2><p>קראו את המשפט ובחרו את התמונה הנכונה!</p></div>
+    <div id="sentmatch-wrap" style="max-width:680px;margin:0 auto"></div>
+  </div>
+
+  <!-- LETTER GAME (first/last letter + vowel finder) -->
+  <div id="lvl-lettergame" class="level-content" style="display:none">
+    <div class="level-header"><h2>🔤 משחק האותיות</h2><p>אות ראשונה, אחרונה, תנועות — כמו בדף התרגול!</p></div>
+    <div id="lettergame-wrap" style="max-width:560px;margin:0 auto"></div>
+  </div>
+
+  <!-- ===== READ LEVELS ===== -->
+  <div id="lvl-sentences" class="level-content" style="display:none">
+    <div class="level-header"><h2>💬 משפטים קצרים</h2><p>לחצו להאזין ולגלות את התרגום!</p></div>
+    <div class="sentences-list" id="sentences-list"></div>
+  </div>
+
+  <div id="lvl-songs" class="level-content" style="display:none">
+    <div class="level-header"><h2>🎵 שירים באנגלית</h2><p>לחצו על שורה לשמוע אותה!</p></div>
+    <div id="songs-container"></div>
+  </div>
+
+  <div id="lvl-story" class="level-content" style="display:none">
+    <div class="level-header"><h2>📖 Tom's Day – סיפור קצר</h2><p>לחצו על משפט לשמוע ולגלות תרגום!</p></div>
+    <div class="story-card"><div class="story-title">🌅 Tom's Day</div><div id="story-content"></div></div>
+  </div>
+
+</div><!-- /app -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===================== DATA =====================
+const abcData=[
+  {l:"Aa",w:"Apple",h:"תפוח",e:"🍎"},{l:"Bb",w:"Balloon",h:"בלון",e:"🎈"},
+  {l:"Cc",w:"Cat",h:"חתול",e:"🐱"},{l:"Dd",w:"Dog",h:"כלב",e:"🐶"},
+  {l:"Ee",w:"Egg",h:"ביצה",e:"🥚"},{l:"Ff",w:"Fish",h:"דג",e:"🐟"},
+  {l:"Gg",w:"Giraffe",h:"ג׳ירפה",e:"🦒"},{l:"Hh",w:"Hat",h:"כובע",e:"🎩"},
+  {l:"Ii",w:"Ice cream",h:"גלידה",e:"🍦"},{l:"Jj",w:"Juice",h:"מיץ",e:"🧃"},
+  {l:"Kk",w:"Kite",h:"עפיפון",e:"🪁"},{l:"Ll",w:"Lion",h:"אריה",e:"🦁"},
+  {l:"Mm",w:"Monkey",h:"קוף",e:"🐵"},{l:"Nn",w:"Nose",h:"אף",e:"👃"},
+  {l:"Oo",w:"Orange",h:"תפוז",e:"🍊"},{l:"Pp",w:"Pen",h:"עט",e:"🖊️"},
+  {l:"Qq",w:"Queen",h:"מלכה",e:"👸"},{l:"Rr",w:"Rabbit",h:"ארנב",e:"🐰"},
+  {l:"Ss",w:"Sun",h:"שמש",e:"☀️"},{l:"Tt",w:"Tiger",h:"נמר",e:"🐯"},
+  {l:"Uu",w:"Umbrella",h:"מטריה",e:"☂️"},{l:"Vv",w:"Van",h:"מסחרית",e:"🚐"},
+  {l:"Ww",w:"Whale",h:"לווייתן",e:"🐋"},{l:"Xx",w:"X-ray",h:"רנטגן",e:"🦴"},
+  {l:"Yy",w:"Yellow",h:"צהוב",e:"🟡"},{l:"Zz",w:"Zebra",h:"זברה",e:"🦓"}
+];
+const easyWords=[
+  // צבעים
+  {en:"Red",he:"אדום",e:"🔴"},{en:"Blue",he:"כחול",e:"🔵"},{en:"Green",he:"ירוק",e:"🟢"},
+  {en:"Yellow",he:"צהוב",e:"🟡"},{en:"Black",he:"שחור",e:"⚫"},{en:"White",he:"לבן",e:"⚪"},
+  {en:"Pink",he:"ורוד",e:"🩷"},{en:"Purple",he:"סגול",e:"🟣"},{en:"Orange",he:"כתום",e:"🟠"},
+  {en:"Brown",he:"חום",e:"🟤"},{en:"Gray",he:"אפור",e:"🩶"},{en:"Gold",he:"זהב",e:"🟨"},
+  // חיות
+  {en:"Dog",he:"כלב",e:"🐶"},{en:"Cat",he:"חתול",e:"🐱"},{en:"Fish",he:"דג",e:"🐟"},
+  {en:"Bird",he:"ציפור",e:"🐦"},{en:"Rabbit",he:"ארנב",e:"🐰"},{en:"Horse",he:"סוס",e:"🐴"},
+  {en:"Cow",he:"פרה",e:"🐄"},{en:"Sheep",he:"כבשה",e:"🐑"},{en:"Duck",he:"ברווז",e:"🦆"},
+  {en:"Elephant",he:"פיל",e:"🐘"},{en:"Giraffe",he:"ג׳ירפה",e:"🦒"},{en:"Monkey",he:"קוף",e:"🐵"},
+  {en:"Penguin",he:"פינגווין",e:"🐧"},{en:"Frog",he:"צפרדע",e:"🐸"},{en:"Bear",he:"דוב",e:"🐻"},
+  {en:"Pig",he:"חזיר",e:"🐷"},{en:"Snake",he:"נחש",e:"🐍"},{en:"Turtle",he:"צב",e:"🐢"},
+  {en:"Crocodile",he:"תנין",e:"🐊"},{en:"Owl",he:"ינשוף",e:"🦉"},{en:"Fox",he:"שועל",e:"🦊"},
+  {en:"Wolf",he:"זאב",e:"🐺"},{en:"Deer",he:"איל",e:"🦌"},{en:"Butterfly",he:"פרפר",e:"🦋"},
+  {en:"Bee",he:"דבורה",e:"🐝"},{en:"Ant",he:"נמלה",e:"🐜"},{en:"Parrot",he:"תוכי",e:"🦜"}
+];
+const mediumWords=[
+  // משפחה
+  {en:"Mom",he:"אמא",e:"👩"},{en:"Dad",he:"אבא",e:"👨"},{en:"Sister",he:"אחות",e:"👧"},
+  {en:"Brother",he:"אח",e:"👦"},{en:"Grandma",he:"סבתא",e:"👵"},{en:"Grandpa",he:"סבא",e:"👴"},
+  {en:"Baby",he:"תינוק",e:"👶"},{en:"Family",he:"משפחה",e:"👨‍👩‍👧‍👦"},{en:"Uncle",he:"דוד",e:"👨"},
+  {en:"Aunt",he:"דודה",e:"👩"},{en:"Cousin",he:"דוד/ה",e:"🧒"},{en:"Son",he:"בן",e:"👦"},
+  {en:"Daughter",he:"בת",e:"👧"},{en:"Friend",he:"חבר/ה",e:"🤝"},
+  // אוכל
+  {en:"Apple",he:"תפוח",e:"🍎"},{en:"Banana",he:"בננה",e:"🍌"},{en:"Orange",he:"תפוז",e:"🍊"},
+  {en:"Bread",he:"לחם",e:"🍞"},{en:"Cheese",he:"גבינה",e:"🧀"},{en:"Milk",he:"חלב",e:"🥛"},
+  {en:"Water",he:"מים",e:"💧"},{en:"Juice",he:"מיץ",e:"🧃"},{en:"Egg",he:"ביצה",e:"🥚"},
+  {en:"Pizza",he:"פיצה",e:"🍕"},{en:"Cake",he:"עוגה",e:"🎂"},{en:"Rice",he:"אורז",e:"🍚"},
+  {en:"Soup",he:"מרק",e:"🥣"},{en:"Salad",he:"סלט",e:"🥗"},{en:"Sandwich",he:"כריך",e:"🥪"},
+  {en:"Cookie",he:"עוגייה",e:"🍪"},{en:"Chocolate",he:"שוקולד",e:"🍫"},{en:"Ice cream",he:"גלידה",e:"🍦"},
+  {en:"Strawberry",he:"תות שדה",e:"🍓"},{en:"Watermelon",he:"אבטיח",e:"🍉"},{en:"Grapes",he:"ענבים",e:"🍇"},
+  {en:"Carrot",he:"גזר",e:"🥕"},{en:"Tomato",he:"עגבניה",e:"🍅"},{en:"Corn",he:"תירס",e:"🌽"}
+];
+const bodyWords=[
+  {en:"Head",he:"ראש",e:"🗣️"},{en:"Eye",he:"עין",e:"👁️"},{en:"Ear",he:"אוזן",e:"👂"},
+  {en:"Nose",he:"אף",e:"👃"},{en:"Mouth",he:"פה",e:"👄"},{en:"Hair",he:"שיער",e:"💇"},
+  {en:"Hand",he:"יד",e:"✋"},{en:"Finger",he:"אצבע",e:"☝️"},{en:"Foot",he:"כף רגל",e:"🦶"},
+  {en:"Leg",he:"רגל",e:"🦵"},{en:"Arm",he:"זרוע",e:"💪"},{en:"Teeth",he:"שיניים",e:"🦷"},
+  {en:"Knee",he:"ברך",e:"🤸"},{en:"Shoulder",he:"כתף",e:"🙆"},{en:"Stomach",he:"בטן",e:"🫃"},
+  {en:"Neck",he:"צוואר",e:"🧣"},{en:"Back",he:"גב",e:"🔙"},{en:"Cheek",he:"לחי",e:"😊"},
+  {en:"Chin",he:"סנטר",e:"😶"},{en:"Tongue",he:"לשון",e:"👅"},{en:"Nail",he:"ציפורן",e:"💅"},
+  {en:"Thumb",he:"אגודל",e:"👍"},{en:"Toe",he:"אצבע רגל",e:"🦶"},{en:"Elbow",he:"מרפק",e:"💪"},
+  {en:"Wrist",he:"פרק כף יד",e:"⌚"},{en:"Ankle",he:"קרסול",e:"🦵"},{en:"Forehead",he:"מצח",e:"🤔"}
+];
+const numbersData=[
+  {en:"Zero",   he:"אפס",            e:"0",  n:true},
+  {en:"One",    he:"אחד",            e:"1",  n:true},
+  {en:"Two",    he:"שניים",          e:"2",  n:true},
+  {en:"Three",  he:"שלוש",           e:"3",  n:true},
+  {en:"Four",   he:"ארבע",           e:"4",  n:true},
+  {en:"Five",   he:"חמש",            e:"5",  n:true},
+  {en:"Six",    he:"שש",             e:"6",  n:true},
+  {en:"Seven",  he:"שבע",            e:"7",  n:true},
+  {en:"Eight",  he:"שמונה",          e:"8",  n:true},
+  {en:"Nine",   he:"תשע",            e:"9",  n:true},
+  {en:"Ten",    he:"עשר",            e:"10", n:true},
+  {en:"Eleven", he:"אחד עשר",        e:"11", n:true},
+  {en:"Twelve", he:"שנים עשר",       e:"12", n:true},
+  {en:"Thirteen",he:"שלושה עשר",     e:"13", n:true},
+  {en:"Fourteen",he:"ארבעה עשר",     e:"14", n:true},
+  {en:"Fifteen", he:"חמישה עשר",     e:"15", n:true},
+  {en:"Sixteen", he:"שישה עשר",      e:"16", n:true},
+  {en:"Seventeen",he:"שבעה עשר",     e:"17", n:true},
+  {en:"Eighteen", he:"שמונה עשר",    e:"18", n:true},
+  {en:"Nineteen", he:"תשעה עשר",     e:"19", n:true},
+  {en:"Twenty",  he:"עשרים",         e:"20", n:true},
+  {en:"Thirty",  he:"שלושים",        e:"30", n:true},
+  {en:"Forty",   he:"ארבעים",        e:"40", n:true},
+  {en:"Fifty",   he:"חמישים",        e:"50", n:true},
+  {en:"Hundred", he:"מאה",           e:"100",n:true},
+  {en:"Thousand",he:"אלף",           e:"1K", n:true},
+  {en:"First",  he:"ראשון",          e:"🥇"},
+  {en:"Second", he:"שני",            e:"🥈"},
+  {en:"Third",  he:"שלישי",          e:"🥉"}
+];
+const schoolWords=[
+  {en:"Book",he:"ספר",e:"📚"},{en:"Pen",he:"עט",e:"🖊️"},{en:"Pencil",he:"עיפרון",e:"✏️"},
+  {en:"Ruler",he:"סרגל",e:"📏"},{en:"Bag",he:"תיק",e:"🎒"},{en:"Chair",he:"כיסא",e:"🪑"},
+  {en:"Board",he:"לוח",e:"📋"},{en:"Eraser",he:"מחק",e:"🧼"},{en:"Scissors",he:"מספריים",e:"✂️"},
+  {en:"Glue",he:"דבק",e:"🧴"},{en:"Paper",he:"נייר",e:"📄"},{en:"Map",he:"מפה",e:"🗺️"},
+  {en:"Teacher",he:"מורה",e:"👩‍🏫"},{en:"Student",he:"תלמיד",e:"🧑‍🎓"},{en:"Classroom",he:"כיתה",e:"🏫"},
+  {en:"Desk",he:"שולחן לימוד",e:"🪑"},{en:"Computer",he:"מחשב",e:"💻"},{en:"Notebook",he:"מחברת",e:"📓"},
+  {en:"Crayon",he:"צבע שעווה",e:"🖍️"},{en:"Paint",he:"צבע",e:"🎨"},{en:"Test",he:"מבחן",e:"📝"},
+  {en:"Homework",he:"שיעורי בית",e:"📖"},{en:"Grade",he:"ציון",e:"⭐"},{en:"Library",he:"ספרייה",e:"📚"},
+  {en:"Playground",he:"מגרש משחקים",e:"🛝"},{en:"Lunch",he:"ארוחת צהריים",e:"🍱"},{en:"Recess",he:"הפסקה",e:"🏃"},
+  {en:"School bus",he:"אוטובוס בית ספר",e:"🚌"},{en:"Principal",he:"מנהל/ת",e:"👨‍💼"},{en:"Lesson",he:"שיעור",e:"📐"}
+];
+const weatherWords=[
+  {en:"Sunny",he:"שמשי",e:"☀️"},{en:"Rainy",he:"גשום",e:"🌧️"},{en:"Cloudy",he:"מעונן",e:"☁️"},
+  {en:"Windy",he:"סוער",e:"💨"},{en:"Snowy",he:"שלגי",e:"❄️"},{en:"Hot",he:"חם",e:"🥵"},
+  {en:"Cold",he:"קר",e:"🥶"},{en:"Warm",he:"חמים",e:"🌤️"},
+  {en:"Spring",he:"אביב",e:"🌸"},{en:"Summer",he:"קיץ",e:"🌞"},
+  {en:"Autumn",he:"סתיו",e:"🍂"},{en:"Winter",he:"חורף",e:"☃️"},
+  {en:"Rainbow",he:"קשת",e:"🌈"},{en:"Storm",he:"סופה",e:"⛈️"},{en:"Fog",he:"ערפל",e:"🌫️"},
+  {en:"Thunder",he:"רעם",e:"⚡"},{en:"Lightning",he:"ברק",e:"🌩️"},{en:"Ice",he:"קרח",e:"🧊"},
+  {en:"Snow",he:"שלג",e:"🌨️"},{en:"Rain",he:"גשם",e:"🌂"},{en:"Sun",he:"שמש",e:"🌞"},
+  {en:"Moon",he:"ירח",e:"🌙"},{en:"Star",he:"כוכב",e:"⭐"},{en:"Cloud",he:"ענן",e:"☁️"},
+  {en:"Hail",he:"ברד",e:"🌨️"},{en:"Humid",he:"לח",e:"💧"},{en:"Dry",he:"יבש",e:"🏜️"}
+];
+const clothingWords=[
+  {en:"Shirt",he:"חולצה",e:"👕"},{en:"Pants",he:"מכנסיים",e:"👖"},{en:"Dress",he:"שמלה",e:"👗"},
+  {en:"Shoes",he:"נעליים",e:"👟"},{en:"Hat",he:"כובע",e:"🎩"},{en:"Socks",he:"גרביים",e:"🧦"},
+  {en:"Coat",he:"מעיל",e:"🧥"},{en:"Scarf",he:"צעיף",e:"🧣"},{en:"Gloves",he:"כפפות",e:"🧤"},
+  {en:"Skirt",he:"חצאית",e:"👗"},{en:"Boots",he:"מגפיים",e:"👢"},{en:"Glasses",he:"משקפיים",e:"👓"},
+  {en:"Jacket",he:"ז׳קט",e:"🧥"},{en:"Sweater",he:"סוודר",e:"🧶"},{en:"Sandals",he:"סנדלים",e:"👡"},
+  {en:"Sneakers",he:"נעלי ספורט",e:"👟"},{en:"Jeans",he:"ג׳ינס",e:"👖"},{en:"Tie",he:"עניבה",e:"👔"},
+  {en:"Belt",he:"חגורה",e:"🪢"},{en:"Cap",he:"כובע מצחייה",e:"🧢"},{en:"Swimsuit",he:"בגד ים",e:"🩱"},
+  {en:"Pajamas",he:"פיג׳מה",e:"🛏️"},{en:"Uniform",he:"מדים",e:"👔"},{en:"Raincoat",he:"מעיל גשם",e:"🌂"}
+];
+const transportWords=[
+  {en:"Car",he:"מכונית",e:"🚗"},{en:"Bus",he:"אוטובוס",e:"🚌"},{en:"Train",he:"רכבת",e:"🚂"},
+  {en:"Bike",he:"אופניים",e:"🚲"},{en:"Plane",he:"מטוס",e:"✈️"},{en:"Ship",he:"ספינה",e:"🚢"},
+  {en:"Taxi",he:"מונית",e:"🚕"},{en:"Truck",he:"משאית",e:"🚛"},{en:"Helicopter",he:"מסוק",e:"🚁"},
+  {en:"Rocket",he:"רקטה",e:"🚀"},{en:"Tractor",he:"טרקטור",e:"🚜"},{en:"Scooter",he:"קורקינט",e:"🛴"},
+  {en:"Motorcycle",he:"אופנוע",e:"🏍️"},{en:"Ambulance",he:"אמבולנס",e:"🚑"},{en:"Fire truck",he:"משאית כיבוי",e:"🚒"},
+  {en:"Police car",he:"מכונית משטרה",e:"🚓"},{en:"Submarine",he:"צוללת",e:"🤿"},{en:"Hot air balloon",he:"בלון אוויר",e:"🎈"},
+  {en:"Sailboat",he:"סירת מפרש",e:"⛵"},{en:"Canoe",he:"קאנו",e:"🛶"},{en:"Cable car",he:"רכבל",e:"🚡"},
+  {en:"Wheelchair",he:"כיסא גלגלים",e:"♿"},{en:"Skateboard",he:"סקייטבורד",e:"🛹"},{en:"Jet",he:"מטוס סילון",e:"🛩️"}
+];
+const jobsWords=[
+  {en:"Doctor",he:"רופא/ה",e:"👨‍⚕️"},{en:"Teacher",he:"מורה",e:"👩‍🏫"},{en:"Firefighter",he:"כבאי/ת",e:"👨‍🚒"},
+  {en:"Police",he:"שוטר/ת",e:"👮"},{en:"Chef",he:"טבח/ית",e:"👨‍🍳"},{en:"Farmer",he:"חקלאי/ת",e:"👨‍🌾"},
+  {en:"Pilot",he:"טייס/ת",e:"👨‍✈️"},{en:"Singer",he:"זמר/ת",e:"🎤"},{en:"Artist",he:"אמן/ית",e:"🎨"},
+  {en:"Dentist",he:"רופא שיניים",e:"🦷"},{en:"Nurse",he:"אחות/אח",e:"👩‍⚕️"},{en:"Engineer",he:"מהנדס/ת",e:"👷"},
+  {en:"Astronaut",he:"אסטרונאוט",e:"👨‍🚀"},{en:"Vet",he:"וטרינר/ית",e:"🐾"},{en:"Baker",he:"אופה",e:"🥖"},
+  {en:"Plumber",he:"שרברב",e:"🔧"},{en:"Scientist",he:"מדען/ית",e:"🔬"},{en:"Architect",he:"אדריכל/ית",e:"📐"},
+  {en:"Actor",he:"שחקן/ית",e:"🎭"},{en:"Writer",he:"סופר/ת",e:"✍️"},{en:"Soldier",he:"חייל/ת",e:"💂"},
+  {en:"Judge",he:"שופט/ת",e:"⚖️"},{en:"Lawyer",he:"עורך/ת דין",e:"📜"},{en:"Programmer",he:"מתכנת/ת",e:"💻"}
+];
+const daysWords=[
+  {en:"Monday",he:"יום שני",e:"1️⃣"},{en:"Tuesday",he:"יום שלישי",e:"2️⃣"},
+  {en:"Wednesday",he:"יום רביעי",e:"3️⃣"},{en:"Thursday",he:"יום חמישי",e:"4️⃣"},
+  {en:"Friday",he:"יום שישי",e:"5️⃣"},{en:"Saturday",he:"שבת",e:"✡️"},{en:"Sunday",he:"יום ראשון",e:"0️⃣"},
+  {en:"Weekend",he:"סוף שבוע",e:"🎉"},{en:"Holiday",he:"חג",e:"🎊"},{en:"Today",he:"היום",e:"📅"},
+  {en:"Tomorrow",he:"מחר",e:"➡️"},{en:"Yesterday",he:"אתמול",e:"⬅️"},
+  {en:"January",he:"ינואר",e:"❄️"},{en:"February",he:"פברואר",e:"💕"},
+  {en:"March",he:"מרץ",e:"🌱"},{en:"April",he:"אפריל",e:"🌸"},
+  {en:"May",he:"מאי",e:"🌺"},{en:"June",he:"יוני",e:"🌻"},
+  {en:"July",he:"יולי",e:"☀️"},{en:"August",he:"אוגוסט",e:"🏖️"},
+  {en:"September",he:"ספטמבר",e:"🍂"},{en:"October",he:"אוקטובר",e:"🎃"},
+  {en:"November",he:"נובמבר",e:"🍁"},{en:"December",he:"דצמבר",e:"⛄"},
+  {en:"Morning",he:"בוקר",e:"🌅"},{en:"Afternoon",he:"אחר הצהריים",e:"🌤️"},
+  {en:"Evening",he:"ערב",e:"🌆"},{en:"Night",he:"לילה",e:"🌙"},
+  {en:"Year",he:"שנה",e:"📆"},{en:"Month",he:"חודש",e:"🗓️"},{en:"Week",he:"שבוע",e:"7️⃣"}
+];
+const emotionsWords=[
+  {en:"Happy",he:"שמח/ה",e:"😊"},{en:"Sad",he:"עצוב/ה",e:"😢"},{en:"Angry",he:"כועס/ת",e:"😠"},
+  {en:"Scared",he:"מפחד/ת",e:"😨"},{en:"Surprised",he:"מופתע/ת",e:"😮"},{en:"Tired",he:"עייף/ה",e:"😴"},
+  {en:"Excited",he:"נרגש/ת",e:"🤩"},{en:"Bored",he:"משועמם/ת",e:"😑"},{en:"Proud",he:"גאה",e:"😤"},
+  {en:"Shy",he:"ביישן/ית",e:"🙈"},{en:"Brave",he:"אמיץ/ה",e:"💪"},{en:"Calm",he:"רגוע/ה",e:"😌"},
+  {en:"Confused",he:"מבולבל/ת",e:"😵"},{en:"Lonely",he:"בודד/ה",e:"🥺"},{en:"Grateful",he:"אסיר/ת תודה",e:"🙏"},
+  {en:"Love",he:"אהבה",e:"❤️"},{en:"Hate",he:"שנאה",e:"💢"},{en:"Hope",he:"תקווה",e:"🌟"},
+  {en:"Laugh",he:"לצחוק",e:"😂"},{en:"Cry",he:"לבכות",e:"😭"},{en:"Smile",he:"לחייך",e:"😀"},
+  {en:"Hug",he:"חיבוק",e:"🤗"},{en:"Kind",he:"אדיב/ה",e:"😇"},{en:"Generous",he:"נדיב/ה",e:"🎁"}
+];
+const homeWords=[
+  {en:"House",he:"בית",e:"🏠"},{en:"Door",he:"דלת",e:"🚪"},{en:"Window",he:"חלון",e:"🪟"},
+  {en:"Bedroom",he:"חדר שינה",e:"🛏️"},{en:"Kitchen",he:"מטבח",e:"🍳"},{en:"Bathroom",he:"חדר אמבטיה",e:"🛁"},
+  {en:"Living room",he:"סלון",e:"🛋️"},{en:"Stairs",he:"מדרגות",e:"🪜"},{en:"Roof",he:"גג",e:"🏚️"},
+  {en:"Bed",he:"מיטה",e:"🛏️"},{en:"Sofa",he:"ספה",e:"🛋️"},{en:"Table",he:"שולחן",e:"🪑"},
+  {en:"Chair",he:"כיסא",e:"🪑"},{en:"Lamp",he:"מנורה",e:"💡"},{en:"Mirror",he:"מראה",e:"🪞"},
+  {en:"Clock",he:"שעון",e:"🕐"},{en:"Phone",he:"טלפון",e:"📱"},{en:"TV",he:"טלוויזיה",e:"📺"},
+  {en:"Fridge",he:"מקרר",e:"🧊"},{en:"Oven",he:"תנור",e:"🔥"},{en:"Sink",he:"כיור",e:"🚰"},
+  {en:"Shower",he:"מקלחת",e:"🚿"},{en:"Toilet",he:"אסלה",e:"🚽"},{en:"Bookshelf",he:"מדף ספרים",e:"📚"},
+  {en:"Pillow",he:"כרית",e:"😴"},{en:"Blanket",he:"שמיכה",e:"🛌"},{en:"Curtain",he:"וילון",e:"🪟"},
+  {en:"Floor",he:"רצפה",e:"🟫"},{en:"Wall",he:"קיר",e:"🧱"},{en:"Ceiling",he:"תקרה",e:"⬆️"}
+];
+const gardenWords=[
+  {en:"Tree",he:"עץ",e:"🌳"},{en:"Flower",he:"פרח",e:"🌸"},{en:"Grass",he:"דשא",e:"🌿"},
+  {en:"Leaf",he:"עלה",e:"🍃"},{en:"Root",he:"שורש",e:"🌱"},{en:"Seed",he:"זרע",e:"🌰"},
+  {en:"Sun",he:"שמש",e:"☀️"},{en:"Rain",he:"גשם",e:"🌧️"},{en:"Soil",he:"אדמה",e:"🟫"},
+  {en:"Rock",he:"סלע",e:"🪨"},{en:"River",he:"נהר",e:"🏞️"},{en:"Lake",he:"אגם",e:"🏝️"},
+  {en:"Mountain",he:"הר",e:"⛰️"},{en:"Forest",he:"יער",e:"🌲"},{en:"Desert",he:"מדבר",e:"🏜️"},
+  {en:"Beach",he:"חוף ים",e:"🏖️"},{en:"Garden",he:"גינה",e:"🌻"},{en:"Park",he:"פארק",e:"🌳"},
+  {en:"Rose",he:"ורד",e:"🌹"},{en:"Sunflower",he:"חמנייה",e:"🌻"},{en:"Mushroom",he:"פטרייה",e:"🍄"},
+  {en:"Cactus",he:"צבר",e:"🌵"},{en:"Bush",he:"שיח",e:"🌿"},{en:"Pond",he:"בריכה",e:"🐸"},
+  {en:"Butterfly",he:"פרפר",e:"🦋"},{en:"Worm",he:"תולעת",e:"🪱"},{en:"Snail",he:"חילזון",e:"🐌"},
+  {en:"Spider",he:"עכביש",e:"🕷️"},{en:"Ladybug",he:"פרת משה רבנו",e:"🐞"},{en:"Dragonfly",he:"שפירית",e:"🪲"}
+];
+const holidaysWords=[
+  // ישראלי
+  {en:"Passover",he:"פסח",e:"🫓"},{en:"Hanukkah",he:"חנוכה",e:"🕎"},{en:"Purim",he:"פורים",e:"🎭"},
+  {en:"Rosh Hashana",he:"ראש השנה",e:"🍎"},{en:"Yom Kippur",he:"יום כיפור",e:"🕍"},{en:"Sukkot",he:"סוכות",e:"🌿"},
+  {en:"Independence Day",he:"יום העצמאות",e:"🇮🇱"},{en:"Shabbat",he:"שבת",e:"✡️"},
+  // כללי
+  {en:"Birthday",he:"יום הולדת",e:"🎂"},{en:"New Year",he:"שנה חדשה",e:"🎆"},
+  {en:"Valentine",he:"יום האהבה",e:"💕"},{en:"Halloween",he:"ליל כל הקדושים",e:"🎃"},
+  {en:"Christmas",he:"כריסמס",e:"🎄"},
+  // פעולות חג
+  {en:"Gift",he:"מתנה",e:"🎁"},{en:"Party",he:"מסיבה",e:"🎉"},{en:"Candle",he:"נר",e:"🕯️"},
+  {en:"Fireworks",he:"זיקוקים",e:"🎆"},{en:"Costume",he:"תחפושת",e:"🎭"},{en:"Balloon",he:"בלון",e:"🎈"},
+  {en:"Cake",he:"עוגה",e:"🎂"},{en:"Celebration",he:"חגיגה",e:"🥳"},{en:"Holiday",he:"חג",e:"🎊"},
+  {en:"Invite",he:"הזמנה",e:"✉️"},{en:"Parade",he:"מצעד",e:"🎺"},{en:"Tradition",he:"מסורת",e:"📜"}
+];
+// ===== ADJECTIVES (from textbook + common) =====
+const adjectivesWords=[
+  {en:"Big",   he:"גדול",   e:"🐘"},{en:"Small",  he:"קטן",    e:"🐭"},
+  {en:"Hot",   he:"חם",     e:"🔥"},{en:"Cold",   he:"קר",     e:"🧊"},
+  {en:"Fat",   he:"שמן",    e:"🐷"},{en:"Thin",   he:"רזה",    e:"🪃"},
+  {en:"Tall",  he:"גבוה",   e:"🦒"},{en:"Short",  he:"נמוך",   e:"🐧"},
+  {en:"Happy", he:"שמח",    e:"😊"},{en:"Sad",    he:"עצוב",   e:"😢"},
+  {en:"Fast",  he:"מהיר",   e:"⚡"},{en:"Slow",   he:"איטי",   e:"🐢"},
+  {en:"New",   he:"חדש",    e:"✨"},{en:"Old",    he:"ישן",    e:"📜"},
+  {en:"Clean", he:"נקי",    e:"🧼"},{en:"Dirty",  he:"מלוכלך", e:"🪣"},
+  {en:"Loud",  he:"רועש",   e:"📢"},{en:"Quiet",  he:"שקט",    e:"🤫"},
+  {en:"Strong",he:"חזק",    e:"💪"},{en:"Weak",   he:"חלש",    e:"😔"},
+  {en:"Soft",  he:"רך",     e:"🧸"},{en:"Hard",   he:"קשה",    e:"🪨"},
+  {en:"Sweet", he:"מתוק",   e:"🍬"},{en:"Sour",   he:"חמוץ",   e:"🍋"},
+  {en:"Pretty",he:"יפה",    e:"🌸"},{en:"Ugly",   he:"מכוער",  e:"👹"},
+  {en:"Right", he:"נכון",   e:"✅"},{en:"Wrong",  he:"שגוי",   e:"❌"},
+  {en:"Good",  he:"טוב",    e:"👍"},{en:"Bad",    he:"רע",     e:"👎"}
+];
+// ===== EVERYDAY OBJECTS (from textbook Exercise 32 & 39) =====
+const objectsWords=[
+  {en:"Pot",   he:"סיר",       e:"🍲"},{en:"Pan",    he:"מחבת",     e:"🍳"},
+  {en:"Can",   he:"קופסת שימורים",e:"🥫"},{en:"Bus",   he:"אוטובוס",  e:"🚌"},
+  {en:"Pup",   he:"גור כלבים", e:"🐶"},{en:"Hen",    he:"תרנגולת",  e:"🐔"},
+  {en:"Pig",   he:"חזיר",      e:"🐷"},{en:"Seal",   he:"כלב ים",   e:"🦭"},
+  {en:"Camel", he:"גמל",       e:"🐪"},{en:"Gorilla",he:"גורילה",   e:"🦍"},
+  {en:"Yoyo",  he:"יויו",      e:"🪀"},{en:"Cup",    he:"כוס",      e:"☕"},
+  {en:"Door",  he:"דלת",       e:"🚪"},{en:"Bag",    he:"תיק",      e:"🎒"},
+  {en:"Box",   he:"קופסה",     e:"📦"},{en:"Ball",   he:"כדור",     e:"⚽"},
+  {en:"Kite",  he:"עפיפון",    e:"🪁"},{en:"Drum",   he:"תוף",      e:"🥁"},
+  {en:"Clown", he:"ליצן",      e:"🤡"},{en:"Arrow",  he:"חץ",       e:"➡️"}
+];
+// ===== VOCAB 2 — from textbook word list =====
+const vocab2Words=[
+  {en:"Farm",     he:"חווה",          e:"🌾"},{en:"Donkey",  he:"חמור",         e:"🫏"},
+  {en:"Fox",      he:"שועל",          e:"🦊"},{en:"Desk",    he:"שולחן כתיבה",  e:"🖥️"},
+  {en:"Farmer",   he:"חקלאי",         e:"👨‍🌾"},{en:"Taxi",   he:"מונית",        e:"🚕"},
+  {en:"Duck",     he:"ברווז",         e:"🦆"},{en:"Doctor",  he:"רופא",         e:"👨‍⚕️"},
+  {en:"Octopus",  he:"תמנון",         e:"🐙"},{en:"Umbrella",he:"מטריה",        e:"☂️"},
+  {en:"Driver",   he:"נהג",           e:"🚌"},{en:"Sheep",   he:"כבשה",         e:"🐑"},
+  {en:"Mouse",    he:"עכבר",          e:"🐭"},{en:"Zero",    he:"אפס",          e:"0️⃣"},
+  {en:"Zoo",      he:"גן חיות",       e:"🦁"},{en:"Zebra",   he:"זברה",         e:"🦓"},
+  {en:"Jump",     he:"לקפוץ",         e:"🦘"},{en:"Yes",     he:"כן",           e:"✅"},
+  {en:"Up",       he:"למעלה",         e:"⬆️"},{en:"Under",   he:"מתחת",        e:"⬇️"},
+  {en:"On",       he:"על",            e:"📍"},{en:"Has",     he:"יש לו/לה",     e:"🤲"},
+  {en:"Six",      he:"שש",            e:"6️⃣"},{en:"Max",     he:"מקס (שם)",     e:"🐕"},
+  {en:"Yellow",   he:"צהוב",          e:"🟡"},{en:"Orange",  he:"כתום",         e:"🟠"},
+  {en:"Horse",    he:"סוס",           e:"🐴"},{en:"Cow",     he:"פרה",          e:"🐄"},
+  {en:"Pup",      he:"גור כלבים",     e:"🐶"},{en:"Door",    he:"דלת",          e:"🚪"}
+];
+const sentencesData=[
+  {en:"This is a cat.",he:"זה חתול."},{en:"I have a dog.",he:"יש לי כלב."},
+  {en:"The bird can fly.",he:"הציפור יכולה לעוף."},{en:"The fish can swim.",he:"הדג יכול לשחות."},
+  {en:"This apple is red.",he:"התפוח הזה אדום."},{en:"My mom is at home.",he:"אמא שלי בבית."},
+  {en:"I like ice cream.",he:"אני אוהב/ת גלידה."},{en:"The lion is big.",he:"האריה גדול."},
+  {en:"I go to school.",he:"אני הולך/ת לבית ספר."},{en:"Today is sunny.",he:"היום שמשי."},
+  {en:"I have two eyes.",he:"יש לי שתי עיניים."},{en:"The book is on the table.",he:"הספר על השולחן."},
+  {en:"She is my sister.",he:"היא אחות שלי."},{en:"We eat bread and cheese.",he:"אנחנו אוכלים לחם וגבינה."},
+  {en:"How are you?",he:"מה שלומך?"},{en:"I am fine, thank you!",he:"אני בסדר, תודה!"},
+  {en:"Good morning!",he:"בוקר טוב!"},{en:"Good night!",he:"לילה טוב!"},
+  // From textbook Exercise 32
+  {en:"The yellow pot is hot.",he:"הסיר הצהוב חם."},{en:"The brown cow is fat.",he:"הפרה החומה שמנה."},
+  {en:"The green frog is small.",he:"הצפרדע הירוקה קטנה."},{en:"The gray seal is happy.",he:"הכלב הים האפור שמח."},
+  {en:"The red hen is sad.",he:"התרנגולת האדומה עצובה."},{en:"The orange camel is tall.",he:"הגמל הכתום גבוה."},
+  {en:"The yellow yoyo is small.",he:"היוי-יו הצהוב קטן."},{en:"The gray gorilla is big.",he:"הגורילה האפורה גדולה."}
+];
+const songs=[
+  {title:"🎵 ABC Song",lines:["A B C D E F G","H I J K L M N O P","Q R S, T U V","W X, Y and Z","Now I know my ABCs","Next time won't you sing with me?"]},
+  {title:"🎵 Head, Shoulders, Knees and Toes",lines:["Head, shoulders, knees and toes,","Knees and toes!","Head, shoulders, knees and toes,","Knees and toes!","And eyes and ears and mouth and nose,","Head, shoulders, knees and toes,","Knees and toes!"]},
+  {title:"🎵 If You're Happy",lines:["If you're happy and you know it, clap your hands!","If you're happy and you know it, clap your hands!","If you're happy and you know it,","Then your face will surely show it,","If you're happy and you know it, clap your hands!"]}
+];
+const storyData=[
+  {en:"Tom is a boy.",he:"טום הוא ילד."},{en:"He is eight years old.",he:"הוא בן שמונה."},
+  {en:"He has a big brown dog.",he:"יש לו כלב גדול וחום."},{en:"His dog's name is Max.",he:"השם של הכלב שלו הוא מקס."},
+  {en:"Tom goes to school every day.",he:"טום הולך לבית ספר כל יום."},{en:"He has a red bag.",he:"יש לו תיק אדום."},
+  {en:"In his bag there is a book and a pen.",he:"בתיק יש ספר ועט."},{en:"The teacher says: Good morning, class!",he:"המורה אומרת: בוקר טוב, כיתה!"},
+  {en:"Tom likes to draw and read.",he:"טום אוהב לצייר ולקרוא."},{en:"After school, Tom plays with Max.",he:"אחרי בית הספר, טום משחק עם מקס."},
+  {en:"Mom makes pizza for dinner.",he:"אמא מכינה פיצה לארוחת ערב."},{en:"It is very yummy!",he:"זה מאוד טעים!"},
+  {en:"At night, Tom reads a book.",he:"בלילה, טום קורא ספר."},{en:"Goodnight, Tom! Goodnight, Max!",he:"לילה טוב, טום! לילה טוב, מקס!"}
+];
+
+// ===================== BADGES =====================
+const BADGES=[
+  {id:'abc',name:'צעדים ראשונים',emoji:'👣',desc:'למדת את כל ה-ABC'},
+  {id:'animals',name:'חובב/ת חיות',emoji:'🐾',desc:'גלית צבעים וחיות'},
+  {id:'family',name:'כוכב/ת המשפחה',emoji:'👨‍👩‍👧',desc:'למדת משפחה ואוכל'},
+  {id:'body',name:'מומחה גוף',emoji:'💪',desc:'למדת את כל חלקי הגוף'},
+  {id:'numbers',name:'קוסם/ת מספרים',emoji:'🔢',desc:'למדת את כל המספרים'},
+  {id:'school',name:'מוכן/ה לכיתה',emoji:'🎒',desc:'למדת חפצי בית ספר'},
+  {id:'weather',name:'מטאורולוג/ית',emoji:'🌈',desc:'למדת מזג אוויר'},
+  {id:'clothes',name:'כוכב/ת אופנה',emoji:'👗',desc:'למדת ביגוד'},
+  {id:'transport',name:'מלך/ת הכביש',emoji:'🚗',desc:'למדת תחבורה'},
+  {id:'jobs',name:'כוכב/ת קריירה',emoji:'👷',desc:'למדת מקצועות'},
+  {id:'days',name:'מלך/ת הלוח',emoji:'📅',desc:'למדת ימים וחודשים'},
+  {id:'emotions',name:'קורא/ת רגשות',emoji:'😊',desc:'למדת רגשות ותחושות'},
+  {id:'home',name:'מומחה הבית',emoji:'🏠',desc:'למדת חפצי בית'},
+  {id:'garden',name:'גנן/ית אלוף/ה',emoji:'🌻',desc:'למדת טבע וגינה'},
+  {id:'holidays',name:'רוח החגים',emoji:'🎉',desc:'למדת חגים ואירועים'},
+  {id:'adj_master',name:'מלך/ת התיאורים',emoji:'⭐',desc:'למדת שמות תואר'},
+  {id:'objects_master',name:'מומחה חפצים',emoji:'🪣',desc:'למדת חפצים יומיומיים'},
+  {id:'vocab2_master',name:'אוצר מילים 2',emoji:'📖',desc:'למדת את אוצר המילים השני'},
+  {id:'match80',name:'מלך/ת ההתאמה',emoji:'🧩',desc:'קיבלת 80+ בהתאמה'},
+  {id:'match_perfect',name:'הופעה מושלמת',emoji:'✨',desc:'התאמה ללא טעויות'},
+  {id:'quiz10',name:'אלוף/ת החידון',emoji:'🏆',desc:'קיבלת 10/10 בחידון'},
+  {id:'catch10',name:'כוכב/ת המהירות',emoji:'⚡',desc:'תפסת 10 מילים ברצף'},
+  {id:'streak3',name:'3 ימים ברצף',emoji:'🔥',desc:'שיחקת 3 ימים ברצף'},
+  {id:'streak7',name:'שבוע שלם!',emoji:'🌟',desc:'שיחקת 7 ימים ברצף'},
+  {id:'words50',name:'50 מילה!',emoji:'📚',desc:'גלית 50 מילים'}
+];
+
+// ===================== STORAGE HELPERS (Safari compatible) =====================
+function storageSet(key, value) {
+  try { localStorage.setItem(key, value); }
+  catch(e) { try { sessionStorage.setItem(key, value); } catch(e2) {} }
+}
+function storageGet(key) {
+  try {
+    const v = localStorage.getItem(key);
+    if(v !== null) return v;
+  } catch(e) {}
+  try { return sessionStorage.getItem(key); } catch(e) { return null; }
+}
+
+// ===================== USER SYSTEM =====================
+const ULIST_KEY='engUsers_v3';
+let currentUser=null,userData=null;
+
+function getUD(name){
+  const raw=storageGet('engUD_'+name);
+  if(!raw) return {name,highScore:0,streak:0,lastPlayed:null,badges:[],wordErrors:{},wordsSeen:{},levelsFlipped:{},dailyWords:{},totalFlipped:0,matchPerfect:false};
+  try{return JSON.parse(raw);}catch(e){return {name,highScore:0,streak:0,lastPlayed:null,badges:[],wordErrors:{},wordsSeen:{},levelsFlipped:{},dailyWords:{},totalFlipped:0,matchPerfect:false};}
+}
+function saveUD(){if(userData)storageSet('engUD_'+userData.name,JSON.stringify(userData));}
+
+function getUsers(){
+  try{return JSON.parse(storageGet(ULIST_KEY)||'[]');}catch(e){return[];}
+}
+function saveUsers(u){storageSet(ULIST_KEY,JSON.stringify(u));}
+
+function loadLogin(){
+  const users=getUsers();
+  const sel=document.getElementById('user-select');
+  sel.innerHTML='<option value="">-- בחר/י ילד/ה --</option>';
+  users.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);});
+}
+
+function addNewUser(){
+  const name=document.getElementById('new-user-name').value.trim();
+  if(!name){document.getElementById('login-msg').innerText='נא להקליד שם';return;}
+  const users=getUsers();
+  if(!users.includes(name)){users.push(name);saveUsers(users);}
+  // Save chosen grade
+  const ud=getUD(name);
+  ud.grade=selectedGradeNew;
+  storageSet('engUD_'+name,JSON.stringify(ud));
+  login(name);
+}
+function selectExistingUser(){
+  const name=document.getElementById('user-select').value;
+  if(!name){document.getElementById('login-msg').innerText='נא לבחור שם';return;}
+  login(name);
+}
+function login(name){
+  currentUser=name;
+  userData=getUD(name);
+  if(!userData.grade) userData.grade=1;
+  updateStreak();
+  saveUD();
+  document.getElementById('login-overlay').style.display='none';
+  document.getElementById('app').style.display='block';
+  const ub=document.getElementById('user-bar');
+  ub.style.display='flex';
+  document.getElementById('ubar-name').textContent=name;
+  document.getElementById('user-avatar').textContent=name[0].toUpperCase();
+  refreshUserBar();
+  updateGradeBadge();
+  applyGradeFilters();
+  initMatchGame();
+}
+function logout(){
+  saveUD();
+  currentUser=null;userData=null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('user-bar').style.display='none';
+  document.getElementById('login-overlay').style.display='flex';
+  loadLogin();
+}
+function refreshUserBar(){
+  if(!userData)return;
+  document.getElementById('streak-display').textContent=userData.streak||0;
+  document.getElementById('hs-display').textContent=userData.highScore||0;
+  document.getElementById('match-hs').textContent=userData.highScore||0;
+}
+
+// ===== STREAK =====
+function updateStreak(){
+  if(!userData)return;
+  const today=new Date().toISOString().slice(0,10);
+  if(userData.lastPlayed===today)return;
+  const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+  if(userData.lastPlayed===yesterday){userData.streak=(userData.streak||0)+1;}
+  else if(userData.lastPlayed!==today){userData.streak=1;}
+  userData.lastPlayed=today;
+  // daily word count
+  userData.dailyWords=userData.dailyWords||{};
+  if(!userData.dailyWords[today])userData.dailyWords[today]=0;
+  checkBadge('streak3',()=>(userData.streak||0)>=3);
+  checkBadge('streak7',()=>(userData.streak||0)>=7);
+}
+function trackWordFlipped(word){
+  if(!userData)return;
+  const today=new Date().toISOString().slice(0,10);
+  userData.dailyWords=userData.dailyWords||{};
+  userData.dailyWords[today]=(userData.dailyWords[today]||0)+1;
+  userData.wordsSeen=userData.wordsSeen||{};
+  userData.wordsSeen[word]=(userData.wordsSeen[word]||0)+1;
+  userData.totalFlipped=(userData.totalFlipped||0)+1;
+  checkBadge('words50',()=>(userData.totalFlipped||0)>=50);
+  saveUD();
+  refreshUserBar();
+}
+
+// ===== BADGES =====
+function checkBadge(id,condFn){
+  if(!userData)return;
+  if(userData.badges.includes(id))return;
+  if(condFn()){
+    userData.badges.push(id);
+    const b=BADGES.find(x=>x.id===id);
+    if(b)showToast('🏅 תג חדש: '+b.name+' '+b.emoji);
+    saveUD();
+  }
+}
+function checkLevelBadge(id,data){
+  if(!userData)return;
+  const key='lv_'+id;
+  userData.levelsFlipped=userData.levelsFlipped||{};
+  userData.levelsFlipped[key]=(userData.levelsFlipped[key]||0)+1;
+  const total=data.length;
+  const seen=userData.levelsFlipped[key];
+  if(seen>=total)checkBadge(id,()=>true);
+}
+
+function renderBadges(){
+  const grid=document.getElementById('badges-grid');
+  if(!userData){grid.innerHTML='<p style="text-align:center;color:#aaa">התחבר/י תחילה</p>';return;}
+  grid.innerHTML=BADGES.map(b=>{
+    const earned=userData.badges.includes(b.id);
+    return `<div class="badge-item ${earned?'earned':'locked'}">
+      <div class="badge-emoji">${b.emoji}</div>
+      <div class="badge-name">${b.name}</div>
+      <div class="badge-desc">${b.desc}</div>
+      ${earned?'<div style="font-size:10px;color:#888;margin-top:3px">✅ הושג!</div>':''}
+    </div>`;
+  }).join('');
+}
+
+// ===== LEADERBOARD =====
+function renderLeaderboard(){
+  const users=getUsers();
+  const rows=users.map(n=>{
+    const ud=getUD(n);
+    return {name:n,hs:ud.highScore||0,streak:ud.streak||0};
+  }).sort((a,b)=>b.hs-a.hs);
+  const medals=['🥇','🥈','🥉'];
+  document.getElementById('lb-content').innerHTML=rows.length?
+    rows.slice(0,10).map((r,i)=>`
+      <div class="lb-row">
+        <div class="lb-rank">${medals[i]||'#'+(i+1)}</div>
+        <div class="lb-name">${r.name}</div>
+        <div class="lb-streak">🔥${r.streak}</div>
+        <div class="lb-score">⭐${r.hs}</div>
+      </div>`).join(''):
+    '<p style="text-align:center;color:#aaa;padding:20px">אין עדיין שחקנים</p>';
+}
+
+// ===== WEEKLY REPORT =====
+function renderWeekly(){
+  if(!userData){document.getElementById('weekly-content').innerHTML='<p style="text-align:center;color:#aaa">התחבר/י תחילה</p>';return;}
+  const days=[];
+  const labels=['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ז׳'];
+  let total=0;
+  for(let i=6;i>=0;i--){
+    const d=new Date(Date.now()-i*86400000).toISOString().slice(0,10);
+    const c=(userData.dailyWords||{})[d]||0;
+    total+=c;
+    days.push({d,c,label:labels[6-i]});
+  }
+  const max=Math.max(...days.map(x=>x.c),1);
+  const bars=days.map(d=>`
+    <div class="week-bar-col">
+      <div class="week-bar-num">${d.c||''}</div>
+      <div class="week-bar" style="height:${Math.round((d.c/max)*80)+4}px"></div>
+      <div class="week-bar-label">${d.label}</div>
+    </div>`).join('');
+  document.getElementById('weekly-content').innerHTML=`
+    <div class="week-bar-wrap">${bars}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+      <div class="week-stat"><strong>${total}</strong><span>מילים השבוע</span></div>
+      <div class="week-stat"><strong>🔥${userData.streak||0}</strong><span>ימים ברצף</span></div>
+      <div class="week-stat"><strong>${userData.badges?userData.badges.length:0}</strong><span>תגים שהושגו</span></div>
+      <div class="week-stat"><strong>⭐${userData.highScore||0}</strong><span>שיא אישי</span></div>
+    </div>`;
+}
+
+// ===== MODALS =====
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  if(id==='badges-modal')renderBadges();
+  else if(id==='lb-modal')renderLeaderboard();
+  else if(id==='weekly-modal')renderWeekly();
+}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});
+});
+
+// ===== NAVIGATION =====
+let currentCategory='words';
+let currentLevelsByCategory={words:'lvl-abc',games:'lvl-match',read:'lvl-sentences',journey:'lvl-journey'};
+
+function showCategory(cat){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('cat-'+cat).classList.add('active');
+  ['words','journey','games','read'].forEach(c=>{
+    const el=document.getElementById('subnav-'+c);
+    if(el) el.style.display=c===cat?'block':'none';
+  });
+  currentCategory=cat;
+  document.querySelectorAll('.level-content').forEach(e=>{e.classList.remove('active');if(e.id.startsWith('lvl-'))e.style.display='none';});
+  if(cat==='journey'){
+    const jel=document.getElementById('lvl-journey');
+    if(jel){jel.classList.add('active');jel.style.display='block';}
+    renderJourney();
+    return;
+  }
+  const lvl=currentLevelsByCategory[cat]||'lvl-abc';
+  const el=document.getElementById(lvl);
+  if(el){el.classList.add('active');el.style.display='block';}
+}
+
+function showLevel(id,btn,cat){
+  document.querySelectorAll('.level-content').forEach(e=>{e.classList.remove('active');if(e.id.startsWith('lvl-'))e.style.display='none';});
+  const el=document.getElementById(id);
+  if(el){el.classList.add('active');el.style.display='block';}
+  if(btn&&cat){
+    document.querySelectorAll('#subnav-'+cat+' .tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  currentLevelsByCategory[cat||currentCategory]=id;
+  btn&&btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+}
+
+// ===== SPEECH =====
+const hasSpeech = (typeof window !== 'undefined') && ('speechSynthesis' in window) && ('SpeechSynthesisUtterance' in window);
+let niceVoice=null;
+function loadNiceVoice(){
+  if(!hasSpeech) return;
+  const voices=window.speechSynthesis.getVoices();
+  const preferred=['Samantha','Karen','Moira','Daniel','Kate','Google US English','Microsoft Aria','Microsoft Jenny','en-US'];
+  for(const name of preferred){
+    const v=voices.find(v=>v.name.includes(name)&&v.lang.startsWith('en'));
+    if(v){niceVoice=v;return;}
+  }
+  niceVoice=voices.find(v=>v.lang.startsWith('en-US'))||voices.find(v=>v.lang.startsWith('en'))||null;
+}
+if(hasSpeech){
+  window.speechSynthesis.onvoiceschanged=loadNiceVoice;
+  loadNiceVoice();
+}
+
+function speak(text,rate=0.85){
+  if(!hasSpeech) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';u.rate=rate;
+    if(niceVoice)u.voice=niceVoice;
+    window.speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
+// For songs & story: warmer, slightly slower, natural pitch
+function speakNice(text, onEnd){
+  if(!hasSpeech){ if(onEnd) onEnd(); return; }
+  try {
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';
+    u.rate=0.82;
+    u.pitch=1.08;
+    if(niceVoice)u.voice=niceVoice;
+    if(onEnd)u.onend=onEnd;
+    window.speechSynthesis.speak(u);
+  } catch(e) { if(onEnd) onEnd(); }
+}
+
+
+// ===== CARD BUILDER =====
+const LEVEL_BADGE_MAP={
+  'abc':'abc','easy':'animals','med':'family','body':'body',
+  'nums':'numbers','school':'school','weather':'weather',
+  'clothes':'clothes','transport':'transport','jobs':'jobs','days':'days',
+  'emotions':'emotions','home':'home','garden':'garden','holidays':'holidays',
+  'adj':'adj_master','objects':'objects_master','vocab2':'vocab2_master'
+};
+const CARD_THEMES={
+  abc:1,easy:2,med:3,body:4,nums:5,school:6,weather:3,clothes:2,transport:5,jobs:6,days:4,
+  emotions:3,home:6,garden:4,holidays:1,adj:5,objects:6,vocab2:2
+};
+
+function buildCards(gridId,data,levelKey,themeOverride){
+  const grid=document.getElementById(gridId);
+  if(!grid)return;
+  grid.innerHTML='';
+  const progEl=document.getElementById('prog-'+levelKey);
+  let flipped=0;
+  const theme=themeOverride||(CARD_THEMES[levelKey]||1);
+
+  data.forEach(item=>{
+    const isABC=!!item.l;
+    const enText=isABC?item.w:item.en;
+    const heText=isABC?item.h:item.he;
+    const isNum=!!item.n;
+    const card=document.createElement('div');
+    card.className=`card ct-${theme}`;
+    const frontIcon=isABC
+      ? `<div style="font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:var(--dark)">${item.l}</div>`
+      : isNum ? `<div class="num-display">${item.e}</div>`
+      : `<div class="card-emoji">${item.e}</div>`;
+    const backIcon=isNum
+      ? `<div class="num-display" style="background:rgba(255,255,255,.3);color:#fff">${item.e}</div>`
+      : `<div class="card-emoji">${item.e}</div>`;
+    card.innerHTML=`<div class="card-inner">
+      <div class="card-front">
+        ${frontIcon}
+        <div class="card-word">${isABC?item.l:enText}</div>
+      </div>
+      <div class="card-back">
+        ${backIcon}
+        <div class="card-word">${enText}</div>
+        <div class="card-tr">${heText}</div>
+      </div>
+    </div>`;
+    card.onclick=()=>{
+      playSfx('flip');
+      if(voiceEnabled) speak(isABC?item.l[0]+', '+enText:enText);
+      card.classList.add('playing');
+      setTimeout(()=>card.classList.remove('playing'),700);
+      if(!card.classList.contains('flipped')){
+        card.classList.add('flipped');
+        flipped++;
+        if(progEl)progEl.style.width=Math.round((flipped/data.length)*100)+'%';
+        trackWordFlipped(enText);
+        if(flipped===data.length&&LEVEL_BADGE_MAP[levelKey]){
+          checkBadge(LEVEL_BADGE_MAP[levelKey],()=>true);
+        }
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+// ===== SENTENCES =====
+function buildSentences(){
+  const list=document.getElementById('sentences-list');
+  list.innerHTML='';
+  sentencesData.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='sent-card';
+    div.innerHTML=`<div class="sent-en">🔊 ${item.en}</div><div class="sent-he">${item.he}</div>`;
+    div.onclick=()=>{speak(item.en,0.8);div.classList.add('open');};
+    list.appendChild(div);
+  });
+}
+
+// ===== SONGS =====
+function buildSongs(){
+  const con=document.getElementById('songs-container');
+  con.innerHTML='';
+  songs.forEach((song)=>{
+    const card=document.createElement('div');
+    card.className='song-card';
+
+    const title=document.createElement('div');
+    title.className='song-title';
+    title.textContent=song.title;
+    card.appendChild(title);
+
+    song.lines.forEach((line)=>{
+      const div=document.createElement('div');
+      div.className='song-line';
+      div.textContent=line;
+      div.onclick=()=>speakSongLine(div,line);
+      card.appendChild(div);
+    });
+
+    const playBtn=document.createElement('button');
+    playBtn.className='song-play-all';
+    playBtn.textContent='▶️ נגן הכל';
+    playBtn.onclick=()=>playSongAll(playBtn,song.lines,card);
+    card.appendChild(playBtn);
+
+    con.appendChild(card);
+  });
+}
+function speakSongLine(el,text){
+  document.querySelectorAll('.song-line').forEach(l=>l.classList.remove('active-line'));
+  el.classList.add('active-line');
+  speakNice(text);
+  setTimeout(()=>el.classList.remove('active-line'),2500);
+}
+function playSongAll(btn,lines,card){
+  let i=0;
+  btn.disabled=true;
+  function next(){
+    if(i>=lines.length){
+      btn.disabled=false;
+      document.querySelectorAll('.song-line').forEach(l=>l.classList.remove('active-line'));
+      return;
+    }
+    const songLines=card.querySelectorAll('.song-line');
+    document.querySelectorAll('.song-line').forEach(l=>l.classList.remove('active-line'));
+    if(songLines[i])songLines[i].classList.add('active-line');
+    speakNice(lines[i],()=>{ i++; setTimeout(next,320); });
+  }
+  next();
+}
+
+// ===== STORY =====
+function buildStory(){
+  const con=document.getElementById('story-content');
+  con.innerHTML='';
+  storyData.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='story-sent';
+    div.innerHTML=`<div class="story-en">🔊 ${item.en}</div><div class="story-he">${item.he}</div>`;
+    div.onclick=()=>{
+      speakNice(item.en);
+      document.querySelectorAll('.story-sent').forEach(s=>s.classList.remove('reading'));
+      div.classList.add('reading');
+      div.classList.toggle('open');
+    };
+    con.appendChild(div);
+  });
+}
+
+// ===== MATCH GAME =====
+let matchScore=0,matchMatched=0,matchTotal=0,matchSelEn=null,matchSelHe=null,matchPerfect=true;
+
+function initMatchGame(){
+  const me=document.getElementById('match-en'),mh=document.getElementById('match-he');
+  const msg=document.getElementById('match-msg');
+  me.innerHTML='';mh.innerHTML='';msg.innerText='';
+  matchScore=0;matchMatched=0;matchPerfect=true;matchSelEn=null;matchSelHe=null;
+  document.getElementById('match-score').textContent=0;
+  document.getElementById('match-prog').style.width='0';
+  const words=shuffle([...bodyWords]).slice(0,10);
+  matchTotal=words.length;
+  shuffle([...words]).forEach(item=>{
+    const b=document.createElement('button');b.className='mbtn';b.textContent=item.en;
+    b.onclick=()=>matchClick(b,item.en,'en');me.appendChild(b);
+  });
+  shuffle([...words]).forEach(item=>{
+    const b=document.createElement('button');b.className='mbtn';b.textContent=item.he;
+    b.dataset.en=item.en;b.onclick=()=>matchClick(b,item.he,'he');mh.appendChild(b);
+  });
+}
+function matchClick(btn,val,type){
+  if(btn.classList.contains('matched'))return;
+  if(type==='en'){
+    if(matchSelEn)matchSelEn.classList.remove('selected');
+    matchSelEn=btn;speak(val);
+  }else{
+    if(matchSelHe)matchSelHe.classList.remove('selected');
+    matchSelHe=btn;
+  }
+  btn.classList.add('selected');
+  if(matchSelEn&&matchSelHe){
+    if(matchSelEn.textContent===matchSelHe.dataset.en){
+      matchSelEn.classList.replace('selected','matched');matchSelHe.classList.replace('selected','matched');
+      setMatchMsg('כל הכבוד! 🎉','#43d9a1');speak('Good job');playSfx('correct');
+      matchScore+=10;matchMatched++;
+      document.getElementById('match-score').textContent=matchScore;
+      document.getElementById('match-prog').style.width=Math.round((matchMatched/matchTotal)*100)+'%';
+      matchSelEn=null;matchSelHe=null;
+      if(matchMatched===matchTotal)setTimeout(()=>matchComplete(),400);
+    }else{
+      matchPerfect=false;matchScore=Math.max(0,matchScore-2);
+      matchSelEn.classList.add('wrong');matchSelHe.classList.add('wrong');
+      setMatchMsg('נסו שוב... 🤔','#ff6b6b');playSfx('wrong');
+      document.getElementById('match-score').textContent=matchScore;
+      const se=matchSelEn,sh=matchSelHe;matchSelEn=null;matchSelHe=null;
+      setTimeout(()=>{se.classList.remove('selected','wrong');sh.classList.remove('selected','wrong');setMatchMsg('','');},800);
+    }
+  }
+}
+let matchMsgT;
+function setMatchMsg(t,c){
+  const el=document.getElementById('match-msg');el.textContent=t;el.style.color=c;
+  clearTimeout(matchMsgT);if(t&&!t.includes('כל הכבוד '))matchMsgT=setTimeout(()=>el.textContent='',1200);
+}
+function matchComplete(){
+  const ud=userData;
+  let msg=`🎉 מדהים ${currentUser}! ניקוד: ${matchScore}`;
+  if(matchPerfect){checkBadge('match_perfect',()=>true);}
+  checkBadge('match80',()=>matchScore>=80);
+  if(matchScore>(ud.highScore||0)){
+    ud.highScore=matchScore;saveUD();
+    document.getElementById('hs-display').textContent=matchScore;
+    document.getElementById('match-hs').textContent=matchScore;
+    msg+=' ⭐ שיא חדש!';speak('Excellent! New record!');
+    launchConfetti();
+  }else{speak('Great job!');}
+  setMatchMsg(msg,'#5c6ef8');
+}
+
+// ===== QUIZ GAME =====
+const QUIZ_POOL=[...bodyWords,...easyWords,...mediumWords,...clothingWords,...transportWords];
+let quizState={};
+function initQuiz(){
+  const words=shuffle(getWeighted(QUIZ_POOL)).slice(0,10);
+  quizState={words,idx:0,score:0,timer:null,wrongMatch:false};
+  renderQuizQuestion();
+}
+function renderQuizQuestion(){
+  const wrap=document.getElementById('quiz-wrap');
+  const {words,idx,score}=quizState;
+  if(idx>=words.length){renderQuizResult();return;}
+  const word=words[idx];
+  const opts=shuffle([word,...shuffle(QUIZ_POOL.filter(w=>w.en!==word.en)).slice(0,3)]);
+  wrap.innerHTML=`
+    <div class="quiz-info">
+      <div class="quiz-round">שאלה ${idx+1} מתוך ${words.length}</div>
+      <div class="s-pill" style="font-size:13px">⭐ ${score}</div>
+    </div>
+    <div class="quiz-timer-wrap"><div class="quiz-timer-bar" id="qtimer" style="width:100%"></div></div>
+    <div class="quiz-question">
+      <div class="quiz-emoji">${word.e}</div>
+      <div class="quiz-he">${word.he}</div>
+    </div>
+    <div class="quiz-options">
+      ${opts.map(o=>`<button class="q-opt" onclick="quizAnswer(this,'${o.en.replace(/'/g,"\\'")}','${word.en.replace(/'/g,"\\'")}',${idx})">${o.en}</button>`).join('')}
+    </div>`;
+  startQuizTimer(word.en,idx);
+}
+function startQuizTimer(correct,idx){
+  let pct=100;
+  clearInterval(quizState.timer);
+  quizState.timer=setInterval(()=>{
+    pct-=1;
+    const bar=document.getElementById('qtimer');
+    if(bar)bar.style.width=pct+'%';
+    if(pct<=0){
+      clearInterval(quizState.timer);
+      quizState.score=Math.max(0,quizState.score-3);
+      highlightCorrect(correct);
+      setTimeout(()=>{quizState.idx++;renderQuizQuestion();},1200);
+    }
+  },150);
+}
+function quizAnswer(btn,answer,correct,idx){
+  if(quizState.idx!==idx)return;
+  clearInterval(quizState.timer);
+  document.querySelectorAll('.q-opt').forEach(b=>b.disabled=true);
+  if(answer===correct){
+    btn.classList.add('correct');speak(correct);playSfx('correct');
+    quizState.score+=10;
+    trackWordError(correct,false);
+  }else{
+    btn.classList.add('wrong');speak(correct);playSfx('wrong');
+    quizState.score=Math.max(0,quizState.score-3);
+    trackWordError(correct,true);
+    highlightCorrect(correct);
+  }
+  setTimeout(()=>{quizState.idx++;renderQuizQuestion();},1000);
+}
+function highlightCorrect(c){
+  document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===c)b.classList.add('correct');});
+}
+function renderQuizResult(){
+  const {score,words}=quizState;
+  const max=words.length*10;
+  const pct=Math.round((score/max)*100);
+  const emoji=pct>=90?'🏆':pct>=70?'😊':pct>=50?'🙂':'💪';
+  checkBadge('quiz10',()=>score===max);
+  document.getElementById('quiz-wrap').innerHTML=`
+    <div class="quiz-result">
+      <div>${emoji}</div>
+      <span class="big">${score}/${max}</span>
+      <p>${pct>=90?'מושלם! 🌟':pct>=70?'כל הכבוד! 😊':pct>=50?'יפה מאוד! 👍':'בפעם הבאה יהיה טוב יותר! 💪'}</p>
+      <button class="game-start-btn" onclick="initQuiz()">🔄 שחק שוב</button>
+    </div>`;
+  if(pct>=90)launchConfetti();
+}
+
+// ===== FILL THE WORD =====
+const FILL_POOL=[...bodyWords,...schoolWords,...clothingWords,...transportWords];
+let fillState={};
+function initFill(){
+  const words=shuffle(getWeighted(FILL_POOL)).slice(0,10);
+  fillState={words,idx:0,score:0};
+  renderFill();
+}
+function renderFill(){
+  const wrap=document.getElementById('fill-wrap');
+  const {words,idx,score}=fillState;
+  if(idx>=words.length){
+    wrap.innerHTML=`<div class="quiz-result">
+      <div>✏️</div><span class="big">${score}/${words.length*10}</span>
+      <p>${score>=80?'מעולה! 🌟':score>=50?'כל הכבוד! 👍':'נסה שוב! 💪'}</p>
+      <button class="game-start-btn" onclick="initFill()">🔄 שחק שוב</button>
+    </div>`;
+    return;
+  }
+  const word=words[idx];
+  const blanki=Math.floor(Math.random()*word.en.length);
+  const blankChar=word.en[blanki].toUpperCase();
+  const display=word.en.toUpperCase().split('').map((c,i)=>
+    i===blanki?`<span class="fill-blank">?</span>`:c).join('');
+  const distractors=shuffle('ABCDEFGHIJKLMNOPRSTW'.split('').filter(c=>c!==blankChar)).slice(0,3);
+  const opts=shuffle([blankChar,...distractors]);
+  wrap.innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-size:13px;color:#aaa">שאלה ${idx+1}/${words.length}</div>
+      <div class="s-pill" style="font-size:13px">⭐ ${score}</div>
+    </div>
+    <div class="fill-hint">
+      <span class="fi-emoji">${word.e}</span>
+      <div class="fi-he">${word.he}</div>
+    </div>
+    <div class="fill-word-display">${display}</div>
+    <div class="fill-letters">
+      ${opts.map(l=>`<button class="fill-letter-btn" onclick="fillAnswer(this,'${l}','${blankChar}',${idx})">${l}</button>`).join('')}
+    </div>`;
+}
+function fillAnswer(btn,letter,correct,idx){
+  if(fillState.idx!==idx)return;
+  document.querySelectorAll('.fill-letter-btn').forEach(b=>b.disabled=true);
+  const word=fillState.words[idx];
+  if(letter===correct){
+    btn.classList.add('correct');speak(word.en);
+    fillState.score+=10;trackWordError(word.en,false);
+    setTimeout(()=>{fillState.idx++;renderFill();},900);
+  }else{
+    btn.classList.add('wrong');
+    fillState.score=Math.max(0,fillState.score-3);
+    trackWordError(word.en,true);
+    document.querySelectorAll('.fill-letter-btn').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
+    setTimeout(()=>{fillState.idx++;renderFill();},1200);
+  }
+}
+
+// ===== CATCH THE WORD — multiple simultaneous falling words =====
+const CATCH_POOL=[...bodyWords,...easyWords,...schoolWords,...clothingWords];
+let catchState={};
+let catchFallTimers=[];
+
+function initCatch(){
+  catchFallTimers.forEach(t=>clearTimeout(t));
+  catchFallTimers=[];
+  catchState={lives:3,score:0,round:0,speed:9,total:15,active:false,catchStreak:0,locked:false};
+  const words=shuffle([...CATCH_POOL]).slice(0,15);
+  catchState.words=words;
+  const wrap=document.getElementById('catch-wrap');
+  wrap.innerHTML=`
+    <div class="catch-header">
+      <div class="score-pills">
+        <div class="s-pill">⭐ <span id="catch-score">0</span></div>
+      </div>
+      <div class="catch-lives" id="catch-lives">❤️❤️❤️</div>
+    </div>
+    <div class="catch-area" id="catch-area"></div>
+    <div class="catch-hint-area">
+      <div class="catch-hint-emoji" id="catch-emoji">🎯</div>
+      <div class="catch-hint-he" id="catch-he">תפסו את המילה הנכונה!</div>
+    </div>`;
+  catchState.active=true;
+  setTimeout(()=>nextCatchRound(),500);
+}
+
+function nextCatchRound(){
+  if(!catchState.active)return;
+  if(catchState.round>=catchState.total){endCatch();return;}
+  const correct=catchState.words[catchState.round];
+  catchState.round++;
+  catchState.currentWord=correct;
+  catchState.locked=false;
+
+  document.getElementById('catch-emoji').textContent=correct.e;
+  document.getElementById('catch-he').textContent=correct.he;
+
+  const area=document.getElementById('catch-area');
+  area.innerHTML='';
+
+  // Pick 2 distractors from pool (different from correct)
+  const distractors=shuffle(CATCH_POOL.filter(w=>w.en!==correct.en)).slice(0,2);
+  const falling=shuffle([correct,...distractors]);
+
+  // spread across 3 lanes
+  const lanes=[10,38,66];
+  const shuffledLanes=shuffle([...lanes]);
+
+  falling.forEach((word,i)=>{
+    const speed=(catchState.speed - i*0.5 + Math.random()*0.6).toFixed(1);
+    const el=document.createElement('div');
+    el.className='falling-word';
+    el.textContent=word.en;
+    el.style.left=shuffledLanes[i]+'%';
+    el.style.animationDuration=speed+'s';
+    el.style.background=word.en===correct.en
+      ? 'linear-gradient(135deg,#5c6ef8,#a78bfa)'
+      : ['linear-gradient(135deg,#f78fa7,#ee5a24)','linear-gradient(135deg,#43d9a1,#00b894)'][i%2];
+
+    el.onclick=()=>{
+      if(catchState.locked)return;
+      catchState.locked=true;
+      area.querySelectorAll('.falling-word').forEach(w=>{
+        w.style.animationPlayState='paused';
+        w.style.pointerEvents='none';
+      });
+
+      if(word.en===correct.en){
+        el.style.background='#43d9a1';
+        el.style.transform='scale(1.2)';
+        catchState.score+=Math.ceil(10*(catchState.speed/9));
+        catchState.catchStreak++;
+        document.getElementById('catch-score').textContent=catchState.score;
+        checkBadge('catch10',()=>catchState.catchStreak>=10);
+        showToast('✅ '+correct.en+' — '+correct.he);
+        setTimeout(()=>nextCatchRound(),600);
+      }else{
+        el.style.background='#ff6b6b';
+        el.style.transform='scale(0.9)';
+        // highlight correct
+        area.querySelectorAll('.falling-word').forEach(w=>{
+          if(w.textContent===correct.en){w.style.background='#43d9a1';w.style.transform='scale(1.15)';}
+        });
+        catchState.lives--;catchState.catchStreak=0;
+        updateCatchLives();
+        showToast('❌ לא נכון! הנכונה: '+correct.en);
+        if(catchState.lives<=0){setTimeout(()=>endCatch(),900);}
+        else{setTimeout(()=>nextCatchRound(),900);}
+      }
+    };
+
+    el.addEventListener('animationend',()=>{
+      if(catchState.locked)return;
+      catchState.locked=true;
+      if(word.en===correct.en){
+        // correct word fell through — lose life
+        catchState.lives--;catchState.catchStreak=0;
+        updateCatchLives();
+        showToast('💨 פספסת: '+correct.en);
+        if(catchState.lives<=0){catchState.active=false;setTimeout(()=>endCatch(),600);}
+        else{setTimeout(()=>nextCatchRound(),500);}
+      }
+    });
+    area.appendChild(el);
+  });
+
+  if(catchState.round%4===0&&catchState.speed>5)catchState.speed-=0.6;
+}
+function updateCatchLives(){
+  const el=document.getElementById('catch-lives');
+  if(el)el.textContent='❤️'.repeat(Math.max(0,catchState.lives))+'🖤'.repeat(3-Math.max(0,catchState.lives));
+}
+function endCatch(){
+  catchState.active=false;
+  const wrap=document.getElementById('catch-wrap');
+  const s=catchState.score;
+  wrap.innerHTML=`<div style="text-align:center;padding:40px 20px">
+    <div style="font-size:52px;margin-bottom:10px">${s>=100?'🏆':s>=60?'😊':'💪'}</div>
+    <div style="font-family:'Baloo 2',cursive;font-size:32px;font-weight:800;color:var(--primary)">⭐ ${s}</div>
+    <div style="color:#aaa;margin:8px 0 20px">תפסת ${catchState.round-catchState.lives} מילים!</div>
+    <button class="game-start-btn" onclick="initCatch()">🔄 שחק שוב</button>
+  </div>`;
+  if(s>=100)launchConfetti();
+}
+
+// ===== MEMORY GAME =====
+const MEM_POOL=[...bodyWords,...easyWords,...mediumWords,...schoolWords,...clothingWords,...transportWords];
+let memState={};
+
+function initMemory(){
+  const pairs=shuffle([...MEM_POOL]).slice(0,8);
+  // Each pair: one card EN, one card HE
+  const cards=shuffle([
+    ...pairs.map((w,i)=>({id:i,type:'en',text:w.en,emoji:w.e,pairId:i})),
+    ...pairs.map((w,i)=>({id:i+pairs.length,type:'he',text:w.he,emoji:w.e,pairId:i}))
+  ]);
+  memState={cards,flipped:[],matched:[],moves:0,lock:false};
+  document.getElementById('mem-moves').textContent=0;
+  document.getElementById('mem-found').textContent=0;
+  document.getElementById('mem-total').textContent=pairs.length;
+  document.getElementById('mem-prog').style.width='0';
+  document.getElementById('mem-msg').textContent='';
+  renderMemGrid();
+}
+
+function renderMemGrid(){
+  const grid=document.getElementById('mem-grid');
+  grid.innerHTML='';
+  memState.cards.forEach((card,idx)=>{
+    const div=document.createElement('div');
+    div.className='mem-card';
+    if(memState.matched.includes(card.pairId))div.classList.add('matched','flipped');
+    div.innerHTML=`
+      <div class="mem-card-inner">
+        <div class="mem-card-front"></div>
+        <div class="mem-card-back">${card.type==='en'?'🔤 '+card.text:'🇮🇱 '+card.text}</div>
+      </div>`;
+    div.onclick=()=>memFlip(idx,div,card);
+    grid.appendChild(div);
+  });
+}
+
+function memFlip(idx,div,card){
+  if(memState.lock)return;
+  if(memState.matched.includes(card.pairId))return;
+  if(memState.flipped.find(f=>f.idx===idx))return;
+  div.classList.add('flipped');
+  if(card.type==='en')speak(card.text);
+  memState.flipped.push({idx,div,card});
+  if(memState.flipped.length===2){
+    memState.lock=true;
+    memState.moves++;
+    document.getElementById('mem-moves').textContent=memState.moves;
+    const [a,b]=memState.flipped;
+    if(a.card.pairId===b.card.pairId){
+      // Match!
+      memState.matched.push(a.card.pairId);
+      memState.flipped=[];
+      memState.lock=false;
+      a.div.classList.add('matched');
+      b.div.classList.add('matched');
+      const found=memState.matched.length;
+      const total=memState.cards.length/2;
+      document.getElementById('mem-found').textContent=found;
+      document.getElementById('mem-prog').style.width=Math.round((found/total)*100)+'%';
+      document.getElementById('mem-msg').textContent='🎉 זוג נמצא!';
+      document.getElementById('mem-msg').style.color='#43d9a1';
+      setTimeout(()=>{if(document.getElementById('mem-msg'))document.getElementById('mem-msg').textContent='';},900);
+      if(found===total)setTimeout(()=>memComplete(),500);
+    }else{
+      // No match
+      document.getElementById('mem-msg').textContent='נסו שוב 🤔';
+      document.getElementById('mem-msg').style.color='#ff6b6b';
+      setTimeout(()=>{
+        a.div.classList.remove('flipped');
+        b.div.classList.remove('flipped');
+        memState.flipped=[];
+        memState.lock=false;
+        if(document.getElementById('mem-msg'))document.getElementById('mem-msg').textContent='';
+      },1000);
+    }
+  }
+}
+
+function memComplete(){
+  const pairs=memState.cards.length/2;
+  const perfect=memState.moves===pairs;
+  const msg=perfect?`🌟 מושלם! ${pairs} זוגות ב-${memState.moves} ניסיונות בלבד!`
+    :`🏆 כל הכבוד! ${pairs} זוגות ב-${memState.moves} ניסיונות`;
+  document.getElementById('mem-msg').textContent=msg;
+  document.getElementById('mem-msg').style.color='#5c6ef8';
+  if(perfect||memState.moves<=pairs+2)launchConfetti();
+  speak('Excellent!');
+}
+
+
+function trackWordError(word,isError){
+  if(!userData)return;
+  userData.wordErrors=userData.wordErrors||{};
+  if(isError)userData.wordErrors[word]=(userData.wordErrors[word]||0)+1;
+  else if(userData.wordErrors[word]>0)userData.wordErrors[word]--;
+  saveUD();
+}
+function getWeighted(pool){
+  if(!userData)return shuffle([...pool]);
+  return shuffle(pool.map(w=>{
+    const e=userData.wordErrors[w.en]||0;
+    return Array(Math.max(1,e+1)).fill(w);
+  }).flat());
+}
+
+// ===== UTILS =====
+function shuffle(a){return [...a].sort(()=>Math.random()-.5);}
+
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function launchConfetti(){
+  const colors=['#5c6ef8','#f78fa7','#f7c948','#43d9a1','#a78bfa','#ff6b6b'];
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const c=document.createElement('div');
+      c.className='confetti-piece';
+      c.style.cssText=`left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*6)]};
+        animation-duration:${1.5+Math.random()*1.5}s;animation-delay:${Math.random()*.5}s;
+        width:${6+Math.random()*10}px;height:${6+Math.random()*10}px;
+        border-radius:${Math.random()>.5?'50%':'3px'}`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),3000);
+    },i*40);
+  }
+}
+
+// ===================== INIT =====================
+buildCards('grid-abc',abcData,'abc');
+buildCards('grid-easy',easyWords,'easy');
+buildCards('grid-med',mediumWords,'med');
+buildCards('grid-body',bodyWords,'body');
+buildCards('grid-nums',numbersData,'nums');
+buildCards('grid-school',schoolWords,'school');
+buildCards('grid-weather',weatherWords,'weather');
+buildCards('grid-clothes',clothingWords,'clothes');
+buildCards('grid-transport',transportWords,'transport');
+buildCards('grid-jobs',jobsWords,'jobs');
+buildCards('grid-days',daysWords,'days');
+buildCards('grid-emotions',emotionsWords,'emotions',3);
+buildCards('grid-home',homeWords,'home',6);
+buildCards('grid-garden',gardenWords,'garden',4);
+buildCards('grid-holidays',holidaysWords,'holidays',3);
+buildCards('grid-adj',adjectivesWords,'adj',5);
+buildCards('grid-objects',objectsWords,'objects',6);
+buildCards('grid-vocab2',vocab2Words,'vocab2',2);
+buildSentences();
+buildSongs();
+buildStory();
+loadLogin();
+
+// Fix initial visibility for game/read levels
+['lvl-match','lvl-quiz','lvl-fill','lvl-catch','lvl-memory','lvl-type','lvl-guess','lvl-race','lvl-sentbuild','lvl-sentmatch','lvl-lettergame','lvl-journey','lvl-sentences','lvl-songs','lvl-story'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.style.display='none';
+});
+
+// ===================== WEB AUDIO ENGINE =====================
+let audioCtx=null, musicNodes=[], musicPlaying=false, musicStyle='lullaby', musicVol=0.3;
+let sfxEnabled=true, voiceEnabled=true;
+
+function getAudioCtx(){
+  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  return audioCtx;
+}
+
+// Pentatonic melody notes (Hz) for each style
+const melodies={
+  lullaby:{
+    notes:[261.63,293.66,329.63,392.00,440.00,392.00,329.63,293.66], // C D E G A G E D
+    tempo:520, type:'sine', gain:0.12
+  },
+  upbeat:{
+    notes:[329.63,392.00,440.00,523.25,392.00,440.00,523.25,659.26], // E G A C G A C E
+    tempo:280, type:'triangle', gain:0.1
+  },
+  piano:{
+    notes:[261.63,329.63,392.00,523.25,392.00,329.63,261.63,196.00], // C E G C G E C G
+    tempo:420, type:'sine', gain:0.13
+  }
+};
+
+let melodyIdx=0, melodyTimer=null;
+
+function startMusic(){
+  stopMusic();
+  const ctx=getAudioCtx();
+  if(ctx.state==='suspended')ctx.resume();
+  const mel=melodies[musicStyle];
+  musicPlaying=true;
+
+  const masterGain=ctx.createGain();
+  masterGain.gain.setValueAtTime(musicVol, ctx.currentTime);
+  masterGain.connect(ctx.destination);
+  musicNodes=[masterGain];
+
+  // Add a soft low-pass filter for warmth
+  const filter=ctx.createBiquadFilter();
+  filter.type='lowpass';
+  filter.frequency.value=1200;
+  filter.connect(masterGain);
+
+  let noteTime=ctx.currentTime+0.1;
+  melodyIdx=0;
+
+  function scheduleNote(){
+    if(!musicPlaying)return;
+    const mel=melodies[musicStyle];
+    const note=mel.notes[melodyIdx%mel.notes.length];
+
+    const osc=ctx.createOscillator();
+    const env=ctx.createGain();
+    osc.type=mel.type;
+    osc.frequency.setValueAtTime(note, noteTime);
+    env.gain.setValueAtTime(0,noteTime);
+    env.gain.linearRampToValueAtTime(mel.gain, noteTime+0.02);
+    env.gain.exponentialRampToValueAtTime(0.001, noteTime+(mel.tempo/1000)*0.85);
+    osc.connect(env);
+    env.connect(filter);
+    osc.start(noteTime);
+    osc.stop(noteTime+(mel.tempo/1000));
+
+    // Occasionally add a harmony note
+    if(melodyIdx%4===0){
+      const osc2=ctx.createOscillator();
+      const env2=ctx.createGain();
+      osc2.type=mel.type;
+      osc2.frequency.setValueAtTime(note*1.5, noteTime);
+      env2.gain.setValueAtTime(0,noteTime);
+      env2.gain.linearRampToValueAtTime(mel.gain*0.4, noteTime+0.03);
+      env2.gain.exponentialRampToValueAtTime(0.001, noteTime+(mel.tempo/1000)*0.6);
+      osc2.connect(env2); env2.connect(filter);
+      osc2.start(noteTime); osc2.stop(noteTime+(mel.tempo/1000));
+    }
+
+    noteTime+=(mel.tempo/1000);
+    melodyIdx++;
+
+    // Schedule next note slightly ahead
+    melodyTimer=setTimeout(scheduleNote, mel.tempo*0.6);
+  }
+
+  scheduleNote();
+  document.getElementById('music-bar').classList.add('visible');
+  document.getElementById('music-title').textContent=
+    {lullaby:'🎠 מנגינה עדינה',upbeat:'🎶 מנגינה קצבית',piano:'🎹 מנגינת פסנתר'}[musicStyle];
+  document.getElementById('set-music').checked=true;
+}
+
+function stopMusic(){
+  musicPlaying=false;
+  clearTimeout(melodyTimer);
+  musicNodes.forEach(n=>{ try{n.disconnect();}catch(e){} });
+  musicNodes=[];
+  document.getElementById('music-bar').classList.remove('visible');
+}
+
+function toggleMusicPlay(){
+  if(musicPlaying){
+    stopMusic();
+    document.querySelector('#music-bar .music-mini-btn').textContent='▶️';
+    document.getElementById('set-music').checked=false;
+  }else{
+    startMusic();
+    document.querySelector('#music-bar .music-mini-btn').textContent='⏸️';
+  }
+}
+
+// SFX helpers
+function playSfx(type){
+  if(!sfxEnabled)return;
+  const ctx=getAudioCtx();
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
+  osc.connect(gain); gain.connect(ctx.destination);
+  if(type==='flip'){
+    osc.frequency.setValueAtTime(880,ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(440,ctx.currentTime+0.15);
+    gain.gain.setValueAtTime(0.08,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.15);
+    osc.start(); osc.stop(ctx.currentTime+0.15);
+  }else if(type==='correct'){
+    osc.frequency.setValueAtTime(523,ctx.currentTime);
+    osc.frequency.setValueAtTime(659,ctx.currentTime+0.1);
+    osc.frequency.setValueAtTime(784,ctx.currentTime+0.2);
+    gain.gain.setValueAtTime(0.12,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.35);
+    osc.start(); osc.stop(ctx.currentTime+0.35);
+  }else if(type==='wrong'){
+    osc.type='sawtooth';
+    osc.frequency.setValueAtTime(220,ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(110,ctx.currentTime+0.2);
+    gain.gain.setValueAtTime(0.08,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.2);
+    osc.start(); osc.stop(ctx.currentTime+0.2);
+  }
+}
+
+// ===================== GRADE SYSTEM =====================
+let selectedGradeNew = 4; // not used but kept for compatibility
+function pickGrade(g, btn){ selectedGradeNew=g; }
+
+// ===== TOPIC META & SECTIONS =====
+const TOPIC_META = {
+  abc:      {label:'אותיות ABC',     emoji:'🔤', lvl:'lvl-abc',      key:'abc'},
+  easy:     {label:'צבעים וחיות',    emoji:'🎨', lvl:'lvl-easy',     key:'easy'},
+  nums:     {label:'מספרים',         emoji:'🔢', lvl:'lvl-nums',     key:'nums'},
+  objects:  {label:'חפצים',          emoji:'🪣', lvl:'lvl-objects',  key:'objects'},
+  med:      {label:'משפחה ואוכל',    emoji:'🍕', lvl:'lvl-med',      key:'med'},
+  body:     {label:'גוף האדם',       emoji:'🦴', lvl:'lvl-body',     key:'body'},
+  school:   {label:'בית ספר',        emoji:'🎒', lvl:'lvl-school',   key:'school'},
+  adj:      {label:'תיאורים',        emoji:'⭐', lvl:'lvl-adj',      key:'adj'},
+  weather:  {label:'מזג אוויר',      emoji:'☀️', lvl:'lvl-weather',  key:'weather'},
+  clothes:  {label:'ביגוד',          emoji:'👕', lvl:'lvl-clothes',  key:'clothes'},
+  transport:{label:'תחבורה',         emoji:'🚗', lvl:'lvl-transport',key:'transport'},
+  days:     {label:'ימים וחודשים',   emoji:'📅', lvl:'lvl-days',     key:'days'},
+  jobs:     {label:'מקצועות',        emoji:'👷', lvl:'lvl-jobs',     key:'jobs'},
+  emotions: {label:'רגשות',          emoji:'😊', lvl:'lvl-emotions', key:'emotions'},
+  home:     {label:'בית',            emoji:'🏠', lvl:'lvl-home',     key:'home'},
+  garden:   {label:'גינה וטבע',      emoji:'🌻', lvl:'lvl-garden',   key:'garden'},
+  holidays: {label:'חגים',           emoji:'🎉', lvl:'lvl-holidays', key:'holidays'},
+  vocab2:   {label:'אוצר מילים 2',   emoji:'📖', lvl:'lvl-vocab2',   key:'vocab2'}
+};
+const GRADE_SECTIONS = [
+  {label:'התחלה',  topics:['abc','easy','nums','objects']},
+  {label:'בסיס',   topics:['med','body','school','adj']},
+  {label:'מתקדם',  topics:['weather','clothes','transport','days']},
+  {label:'אלוף',   topics:['jobs','emotions','home','garden','holidays','vocab2']}
+];
+// All topics/games open to everyone — defined AFTER TOPIC_META to avoid TDZ crash
+const GRADE_TOPICS = { 4: Object.keys(TOPIC_META) };
+const GRADE_GAMES  = { 4: ['match','memory','sentmatch','sentbuild','quiz','fill','catch','type','guess','race','lettergame'] };
+
+function getTopicProgress(key){
+  if(!userData) return 0;
+  const seen = Object.keys(userData.wordsSeen||{}).filter(w => {
+    const pool = getTopicPool(key);
+    return pool.some(item => (item.en||item.w)===w);
+  });
+  const total = getTopicPool(key).length;
+  return total ? Math.round((seen.length/total)*100) : 0;
+}
+
+function getTopicPool(key){
+  const map={abc:abcData,easy:easyWords,nums:numbersData,med:mediumWords,body:bodyWords,
+    school:schoolWords,weather:weatherWords,clothes:clothingWords,transport:transportWords,
+    days:daysWords,jobs:jobsWords,emotions:emotionsWords,home:homeWords,garden:gardenWords,
+    holidays:holidaysWords,adj:adjectivesWords,objects:objectsWords,vocab2:vocab2Words};
+  return map[key]||[];
+}
+
+function isTopicUnlocked(){ return true; } // All topics open to everyone
+
+function renderJourney(){
+  const path = document.getElementById('journey-path');
+  document.getElementById('journey-grade-label').textContent = 'לחצו על נושא כדי להתחיל ללמוד!';
+  let html = '';
+  GRADE_SECTIONS.forEach(sec => {
+    html += `<div class="journey-section">
+      <div class="journey-section-title">${sec.label}</div>
+      <div class="journey-nodes">`;
+    sec.topics.forEach(key => {
+      if(!TOPIC_META[key]) return;
+      const meta = TOPIC_META[key];
+      const prog = getTopicProgress(key);
+      const completed = prog >= 80;
+      const cls = 'j-node unlocked' + (completed?' completed':'');
+      html += `<div class="${cls}" onclick="goToTopic('${key}')" title="${meta.label}">
+        ${completed?'<span class="j-check-icon">✅</span>':''}
+        <div class="j-node-emoji">${meta.emoji}</div>
+        <div class="j-node-name">${meta.label}</div>
+        <div class="j-node-prog"><div class="j-node-prog-bar" style="width:${prog}%"></div></div>
+        <div style="font-size:10px;color:#aaa;margin-top:3px">${prog}%</div>
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+  path.innerHTML = html;
+}
+
+function goToTopic(key){
+  const meta = TOPIC_META[key];
+  showCategory('words');
+  const wordTab = document.querySelector(`#subnav-words .tab-btn[onclick*="${meta.lvl}"]`);
+  if(wordTab){
+    document.querySelectorAll('#subnav-words .tab-btn').forEach(b=>b.classList.remove('active'));
+    wordTab.classList.add('active');
+  }
+  showLevel(meta.lvl, wordTab||{classList:{add:()=>{}}}, 'words');
+}
+
+function changeGrade(){ /* grade system removed */ }
+function updateGradeBadge(){ /* grade system removed */ }
+function applyGradeFilters(){
+  // All content open to everyone
+  document.querySelectorAll('#subnav-words .tab-btn, #subnav-games .tab-btn').forEach(btn=>btn.style.display='');
+}
+
+// ===================== TYPING GAME =====================
+const TYPE_POOL = [...bodyWords,...easyWords,...schoolWords,...clothingWords,...mediumWords];
+let typeState = {};
+
+function initTyping(){
+  const words = shuffle(getWeighted(TYPE_POOL)).slice(0,10);
+  typeState = {words, idx:0, score:0, hintsUsed:0};
+  renderTyping();
+}
+
+function renderTyping(){
+  const wrap = document.getElementById('type-wrap');
+  const {words, idx, score} = typeState;
+  if(idx >= words.length){
+    wrap.innerHTML = `<div class="type-wrap quiz-result">
+      <div>⌨️</div><span class="big">${score}/${words.length*10}</span>
+      <p>${score>=80?'כותב/ת כמו אלוף/ה! 🌟':score>=50?'יפה מאוד! 👍':'נסו שוב! 💪'}</p>
+      <button class="game-start-btn" onclick="initTyping()">🔄 שחק שוב</button></div>`;
+    return;
+  }
+  const word = words[idx];
+  const letters = word.en.toUpperCase().split('');
+  typeState.current = [];
+  typeState.word = word;
+
+  const letterBoxes = letters.map((_,i)=>`<div class="type-letter" id="tl${i}"></div>`).join('');
+  const rows = [
+    'QWERTYUIOP','ASDFGHJKL','ZXCVBNM'
+  ];
+  const kbHtml = rows.map(row =>
+    `<div class="type-kb-row">${row.split('').map(l=>`<button class="type-key" onclick="typeKey('${l}')">${l}</button>`).join('')}</div>`
+  ).join('')+
+  `<div class="type-kb-row">
+    <button class="type-key hint-key" onclick="typeHint()">💡 רמז</button>
+    <button class="type-key del" onclick="typeDel()">⌫ מחק</button>
+  </div>`;
+
+  wrap.innerHTML = `<div class="type-wrap">
+    <div class="type-info">
+      <div style="font-size:13px;color:#aaa">מילה ${idx+1} מתוך ${words.length}</div>
+      <div class="s-pill" style="font-size:13px">⭐ ${score}</div>
+    </div>
+    <div class="type-clue">
+      <div class="type-clue-emoji">${word.e}</div>
+      <div class="type-clue-he">${word.he}</div>
+    </div>
+    <div class="type-input-row">${letterBoxes}</div>
+    <div class="type-keyboard">${kbHtml}</div>
+  </div>`;
+  updateTypeBoxes();
+}
+
+function updateTypeBoxes(){
+  const letters = typeState.word.en.toUpperCase().split('');
+  letters.forEach((l,i)=>{
+    const el = document.getElementById('tl'+i);
+    if(!el) return;
+    el.className = 'type-letter';
+    if(i < typeState.current.length){
+      el.textContent = typeState.current[i];
+      el.classList.add('filled');
+    } else if(i === typeState.current.length){
+      el.textContent = '';
+      el.classList.add('current');
+    } else {
+      el.textContent = '';
+    }
+  });
+}
+
+function typeKey(l){
+  const word = typeState.word.en.toUpperCase();
+  if(typeState.current.length >= word.length) return;
+  typeState.current.push(l);
+  updateTypeBoxes();
+  if(typeState.current.length === word.length) setTimeout(checkTyping, 200);
+}
+function typeDel(){
+  if(typeState.current.length > 0){ typeState.current.pop(); updateTypeBoxes(); }
+}
+function typeHint(){
+  const word = typeState.word.en.toUpperCase();
+  const nextIdx = typeState.current.length;
+  if(nextIdx < word.length){
+    typeState.current.push(word[nextIdx]);
+    typeState.hintsUsed++;
+    updateTypeBoxes();
+    if(typeState.current.length === word.length) setTimeout(checkTyping,200);
+  }
+}
+function checkTyping(){
+  const word = typeState.word.en.toUpperCase();
+  const typed = typeState.current.join('');
+  const letters = word.split('');
+  letters.forEach((l,i)=>{
+    const el = document.getElementById('tl'+i);
+    if(!el) return;
+    el.classList.remove('filled','current');
+    el.classList.add(typeState.current[i]===l ? 'correct' : 'wrong');
+  });
+  if(typed === word){
+    const pts = Math.max(2, 10 - typeState.hintsUsed*3);
+    typeState.score += pts;
+    speak(typeState.word.en); playSfx('correct');
+    showToast('✅ '+typeState.word.en+' — '+pts+' נקודות!');
+    setTimeout(()=>{ typeState.idx++; typeState.hintsUsed=0; renderTyping(); }, 900);
+  } else {
+    playSfx('wrong');
+    typeState.score = Math.max(0, typeState.score-2);
+    setTimeout(()=>{ typeState.current=[]; updateTypeBoxes(); }, 800);
+  }
+}
+
+// ===================== GUESS BY DEFINITION =====================
+const DEFINITIONS = [
+  {en:"Cat",    he:"חתול",   e:"🐱", def:"חיה שאוהבת דגים ואומרת מיאו"},
+  {en:"Dog",    he:"כלב",    e:"🐶", def:"החבר הכי טוב של האדם, נובח ומכשכש בזנב"},
+  {en:"Apple",  he:"תפוח",   e:"🍎", def:"פרי אדום או ירוק, גדל על עץ"},
+  {en:"Sun",    he:"שמש",    e:"☀️", def:"כוכב גדול שמאיר ומחמם אותנו ביום"},
+  {en:"Water",  he:"מים",    e:"💧", def:"שותים אותו, עשוי מ-H₂O, נוזל שקוף"},
+  {en:"Book",   he:"ספר",    e:"📚", def:"עשוי מדפים, מכיל סיפורים או ידע"},
+  {en:"School", he:"בית ספר",e:"🏫", def:"המקום שאליו הולכים ללמוד כל בוקר"},
+  {en:"Doctor", he:"רופא/ה", e:"👨‍⚕️",def:"עוזר לך כשאתה חולה, עובד בבית חולים"},
+  {en:"Rain",   he:"גשם",    e:"🌧️", def:"מים שנופלים מהשמיים בחורף"},
+  {en:"Bird",   he:"ציפור",  e:"🐦", def:"בעל חיים שיש לו כנפיים ומסוגל לעוף"},
+  {en:"Chair",  he:"כיסא",   e:"🪑", def:"רהיט שיושבים עליו"},
+  {en:"Bread",  he:"לחם",    e:"🍞", def:"אוכל שעשוי מקמח ואופים בתנור"},
+  {en:"Horse",  he:"סוס",    e:"🐴", def:"בעל חיים גדול שרוכבים עליו"},
+  {en:"Tree",   he:"עץ",     e:"🌳", def:"צמח גדול עם גזע, ענפים ועלים"},
+  {en:"Fire",   he:"אש",     e:"🔥", def:"חם, כתום, מסוכן — לא נוגעים בה!"},
+  {en:"Moon",   he:"ירח",    e:"🌙", def:"מאיר בלילה, עגול, סובב את כדור הארץ"},
+  {en:"Heart",  he:"לב",     e:"❤️", def:"שרירי ששולח דם בגוף, סמל של אהבה"},
+  {en:"Milk",   he:"חלב",    e:"🥛", def:"שתיה לבנה שמגיעה מפרה, עשיר בסידן"},
+  {en:"Happy",  he:"שמח",    e:"😊", def:"הרגשה טובה — מחייכים ומרוצים"},
+  {en:"Fast",   he:"מהיר",   e:"⚡", def:"הפוך של איטי — זזים בלי עצירה"}
+];
+
+let guessState = {};
+function initGuess(){
+  const words = shuffle([...DEFINITIONS]).slice(0, 10);
+  guessState = {words, idx:0, score:0};
+  renderGuess();
+}
+function renderGuess(){
+  const wrap = document.getElementById('guess-wrap');
+  const {words, idx, score} = guessState;
+  if(idx >= words.length){
+    wrap.innerHTML=`<div class="guess-wrap quiz-result">
+      <div>🔍</div><span class="big">${score}/${words.length*10}</span>
+      <p>${score>=80?'בלש מעולה! 🕵️':score>=50?'כל הכבוד! 👍':'נסו שוב! 💪'}</p>
+      <button class="game-start-btn" onclick="initGuess()">🔄 שחק שוב</button></div>`;
+    return;
+  }
+  const word = words[idx];
+  const distractors = shuffle(DEFINITIONS.filter(d=>d.en!==word.en)).slice(0,3);
+  const opts = shuffle([word,...distractors]);
+  wrap.innerHTML = `<div class="guess-wrap">
+    <div class="type-info">
+      <div style="font-size:13px;color:#aaa">שאלה ${idx+1}/${words.length}</div>
+      <div class="s-pill" style="font-size:13px">⭐ ${score}</div>
+    </div>
+    <div class="guess-def">
+      <div style="font-size:36px;margin-bottom:8px">${word.e}</div>
+      <div class="guess-def-text">"${word.def}"</div>
+    </div>
+    <div class="guess-options">
+      ${opts.map(o=>`<button class="guess-opt" onclick="checkGuess(this,'${o.en}','${word.en}')">${o.en}<br><span style="font-size:12px;color:#aaa">${o.he}</span></button>`).join('')}
+    </div>
+  </div>`;
+}
+function checkGuess(btn, answer, correct){
+  document.querySelectorAll('.guess-opt').forEach(b=>b.disabled=true);
+  if(answer===correct){
+    btn.classList.add('correct'); speak(correct); playSfx('correct');
+    guessState.score+=10; trackWordError(correct,false);
+  } else {
+    btn.classList.add('wrong'); speak(correct); playSfx('wrong');
+    guessState.score=Math.max(0,guessState.score-3); trackWordError(correct,true);
+    document.querySelectorAll('.guess-opt').forEach(b=>{if(b.textContent.startsWith(correct))b.classList.add('correct');});
+  }
+  setTimeout(()=>{guessState.idx++;renderGuess();},1000);
+}
+
+// ===================== 2-PLAYER RACE =====================
+const RACE_POOL = [...easyWords,...mediumWords,...bodyWords,...schoolWords];
+let raceState = {};
+
+function initRace(){
+  const wrap = document.getElementById('race-wrap');
+  wrap.innerHTML = `<div class="race-setup">
+    <div style="font-size:48px;margin-bottom:10px">🏁</div>
+    <h3 style="font-family:'Baloo 2',cursive;font-size:22px;margin-bottom:16px">מי המהיר יותר?</h3>
+    <div class="race-player-setup">
+      <div class="race-p-field">
+        <label class="race-p-label race-p1-label">🔵 שחקן 1</label>
+        <input class="login-input" id="race-p1-name" placeholder="שם שחקן 1" value="${userData?userData.name:'שחקן 1'}">
+      </div>
+      <div class="race-p-field">
+        <label class="race-p-label race-p2-label">🩷 שחקן 2</label>
+        <input class="login-input" id="race-p2-name" placeholder="שם שחקן 2" value="שחקן 2">
+      </div>
+    </div>
+    <div style="margin:10px 0">
+      <label class="login-label">מה לרוץ עליו?</label>
+      <select class="login-select" id="race-topic-sel">
+        <option value="mixed">🎲 מעורב</option>
+        <option value="easy">🎨 צבעים וחיות</option>
+        <option value="body">🦴 גוף האדם</option>
+        <option value="school">🎒 בית ספר</option>
+        <option value="med">🍕 משפחה ואוכל</option>
+      </select>
+    </div>
+    <button class="game-start-btn" style="margin-top:14px" onclick="startRace()">🚀 התחילו!</button>
+  </div>`;
+}
+
+function startRace(){
+  const p1 = document.getElementById('race-p1-name').value.trim()||'שחקן 1';
+  const p2 = document.getElementById('race-p2-name').value.trim()||'שחקן 2';
+  const topic = document.getElementById('race-topic-sel').value;
+  const poolMap={easy:easyWords,body:bodyWords,school:schoolWords,med:mediumWords,mixed:RACE_POOL};
+  const pool = poolMap[topic]||RACE_POOL;
+  const words = shuffle([...pool]).slice(0,20);
+  raceState = {p1,p2,words,idx:0,score:{p1:0,p2:0},goal:10,locked:false};
+  renderRace();
+}
+
+function renderRace(){
+  const {p1,p2,words,idx,score,goal} = raceState;
+  if(score.p1>=goal||score.p2>=goal){ raceEnd(); return; }
+  if(idx>=words.length){ raceEnd(); return; }
+  const word = words[idx];
+  raceState.currentWord = word;
+  raceState.locked = false;
+  const distractors = shuffle(RACE_POOL.filter(w=>w.en!==word.en)).slice(0,3);
+  const opts = shuffle([word,...distractors]);
+  const optBtnsP1 = opts.map(o=>`<button class="race-opt" onclick="raceAnswer('p1','${o.en}','${word.en}')">${o.en}</button>`).join('');
+  const optBtnsP2 = opts.map(o=>`<button class="race-opt" onclick="raceAnswer('p2','${o.en}','${word.en}')">${o.en}</button>`).join('');
+  const prog1 = Math.round((score.p1/goal)*100);
+  const prog2 = Math.round((score.p2/goal)*100);
+  speak(word.en);
+  document.getElementById('race-wrap').innerHTML = `<div class="race-arena">
+    <div class="race-top">
+      <div class="race-score-p1">🔵 ${p1}: ${score.p1}/${goal}</div>
+      <div style="color:#aaa;font-size:13px">מילה ${idx+1}</div>
+      <div class="race-score-p2">${score.p2}/${goal} :🩷${p2}</div>
+    </div>
+    <div class="race-word-display">
+      <div class="race-word-emoji">${word.e}</div>
+      <div class="race-word-he">${word.he}</div>
+      <div style="font-size:12px;color:#aaa;margin-top:4px">בחרו את המילה באנגלית!</div>
+    </div>
+    <div class="race-cols">
+      <div class="race-col p1">
+        <div class="race-col-label">🔵 ${p1}</div>
+        <div id="race-opts-p1">${optBtnsP1}</div>
+      </div>
+      <div class="race-col p2">
+        <div class="race-col-label">🩷 ${p2}</div>
+        <div id="race-opts-p2" style="display:flex;flex-direction:column;gap:8px">${optBtnsP2}</div>
+      </div>
+    </div>
+    <div class="race-progress" id="race-bar">
+      <div class="race-prog-p1" style="width:${prog1}%"></div>
+      <div class="race-prog-p2" style="width:${prog2}%"></div>
+    </div>
+  </div>`;
+}
+
+function raceAnswer(player, answer, correct){
+  if(raceState.locked) return;
+  const col = document.getElementById('race-opts-'+player);
+  if(!col) return;
+  const btns = col.querySelectorAll('.race-opt');
+  btns.forEach(b=>b.disabled=true);
+  if(answer===correct){
+    btns.forEach(b=>{ if(b.textContent===answer) b.classList.add('correct-'+player); });
+    raceState.score[player]++;
+    playSfx('correct');
+    if(raceState.score.p1 >= raceState.goal || raceState.score.p2 >= raceState.goal){
+      setTimeout(()=>raceEnd(),600); return;
+    }
+  } else {
+    btns.forEach(b=>{ if(b.textContent===answer) b.classList.add('wrong-r'); });
+    playSfx('wrong');
+  }
+  // Check if both players have answered
+  const otherCol = document.getElementById(player==='p1'?'race-opts-p2':'race-opts-p1');
+  const otherDone = otherCol && [...otherCol.querySelectorAll('.race-opt')].every(b=>b.disabled);
+  if(otherDone){
+    setTimeout(()=>{ raceState.idx++; renderRace(); }, 900);
+  }
+}
+
+function raceEnd(){
+  const {p1,p2,score} = raceState;
+  const winner = score.p1>score.p2 ? p1 : score.p2>score.p1 ? p2 : null;
+  launchConfetti();
+  speak(winner ? 'Congratulations '+winner+'!' : 'Its a tie!');
+  document.getElementById('race-wrap').innerHTML = `<div class="race-arena race-win">
+    <div style="font-size:56px">${winner?'🏆':'🤝'}</div>
+    <span class="big" style="color:var(--primary)">${winner ? winner+' ניצח/ה!' : 'תיקו!'}</span>
+    <div style="font-size:16px;color:#aaa;margin-bottom:20px">
+      🔵 ${p1}: ${score.p1} | 🩷 ${p2}: ${score.p2}
+    </div>
+    <button class="game-start-btn" onclick="initRace()">🔄 שחק שוב</button>
+  </div>`;
+}
+
+
+// ===================== SENTENCE BUILDER =====================
+const SB_COLORS=[
+  {en:'yellow',he:'צהוב',hex:'#f7c948'},{en:'brown',he:'חום',hex:'#8B5E3C'},
+  {en:'green',he:'ירוק',hex:'#43d9a1'},{en:'gray',he:'אפור',hex:'#aaa'},
+  {en:'red',he:'אדום',hex:'#ff6b6b'},{en:'orange',he:'כתום',hex:'#f59e0b'},
+  {en:'blue',he:'כחול',hex:'#5c6ef8'},{en:'pink',he:'ורוד',hex:'#f78fa7'},
+  {en:'black',he:'שחור',hex:'#2a2a3e'},{en:'white',he:'לבן',hex:'#e0e0e0'}
+];
+const SB_ANIMALS=[
+  {en:'cow',he:'פרה',e:'🐄'},{en:'frog',he:'צפרדע',e:'🐸'},
+  {en:'hen',he:'תרנגולת',e:'🐔'},{en:'camel',he:'גמל',e:'🐪'},
+  {en:'pig',he:'חזיר',e:'🐷'},{en:'seal',he:'כלב ים',e:'🦭'},
+  {en:'gorilla',he:'גורילה',e:'🦍'},{en:'cat',he:'חתול',e:'🐱'},
+  {en:'dog',he:'כלב',e:'🐶'},{en:'lion',he:'אריה',e:'🦁'},
+  {en:'elephant',he:'פיל',e:'🐘'},{en:'rabbit',he:'ארנב',e:'🐰'}
+];
+const SB_ADJS=[
+  {en:'big',he:'גדול'},{en:'small',he:'קטן'},{en:'fat',he:'שמן'},
+  {en:'tall',he:'גבוה'},{en:'happy',he:'שמח'},{en:'sad',he:'עצוב'},
+  {en:'hot',he:'חם'},{en:'cold',he:'קר'},{en:'fast',he:'מהיר'},
+  {en:'cute',he:'חמוד'},{en:'loud',he:'רועש'},{en:'quiet',he:'שקט'}
+];
+let sbState={color:null,animal:null,adj:null,score:0,streak:0};
+
+function initSentBuilder(){
+  sbState={color:null,animal:null,adj:null,score:0,streak:0};
+  renderSentBuilder();
+}
+function renderSentBuilder(){
+  const wrap=document.getElementById('sentbuild-wrap');
+  if(!wrap)return;
+  const {color,animal,adj}=sbState;
+  const colorChips=SB_COLORS.map(c=>{
+    const sel=color&&color.en===c.en;
+    const st=sel?`background:${c.hex};border-color:${c.hex};color:${['yellow','white'].includes(c.en)?'#333':'#fff'}`:'';
+    return `<button class="sb-chip${sel?' selected-color':''}" style="${st}" onclick="sbPick('color',${c.en})">${c.he}/${c.en}</button>`;
+  }).join('');
+  const animalChips=SB_ANIMALS.map(a=>`<button class="sb-chip${animal&&animal.en===a.en?' selected-animal':''}" onclick="sbPick('animal',${a.en})">${a.e} ${a.he}</button>`).join('');
+  const adjChips=SB_ADJS.map(d=>`<button class="sb-chip${adj&&adj.en===d.en?' selected-adj':''}" onclick="sbPick('adj',${d.en})">${d.he}/${d.en}</button>`).join('');
+  const en1=color?color.en:'___', en2=animal?animal.en:'___', en3=adj?adj.en:'___';
+  const sentHe=color&&animal&&adj?`ה${animal.he} ה${color.he} ${adj.he}`:'';
+  const ready=color&&animal&&adj;
+  wrap.innerHTML=`<div class="sb-wrap">
+    <div class="sb-score-row"><div class="s-pill">⭐ ${sbState.score}</div><div style="font-size:13px;color:#aaa">🔥 ${sbState.streak}</div></div>
+    <div class="sb-preview">
+      <div class="sb-emoji-preview">${animal?animal.e:'❓'}</div>
+      <div class="sb-sentence-en">The <span class="sb-word-slot">${en1}</span> <span class="sb-word-slot">${en2}</span> is <span class="sb-word-slot">${en3}</span>.</div>
+      ${sentHe?`<div class="sb-sentence-he">${sentHe}</div>`:''}
+    </div>
+    <div class="sb-section"><div class="sb-section-label">🎨 צבע:</div><div class="sb-chips">${colorChips}</div></div>
+    <div class="sb-section"><div class="sb-section-label">🐾 חיה:</div><div class="sb-chips">${animalChips}</div></div>
+    <div class="sb-section"><div class="sb-section-label">⭐ תיאור:</div><div class="sb-chips">${adjChips}</div></div>
+    <div class="sb-actions">
+      ${ready?`<button class="game-start-btn" onclick="sbSpeak()">🔊 שמע</button>
+               <button class="game-start-btn" style="background:linear-gradient(135deg,#43d9a1,#1a8f6a)" onclick="sbConfirm()">✅ אישור</button>`:''}
+      <button class="shuffle-btn" onclick="sbRandom()">🎲 אקראי</button>
+    </div>
+  </div>`;
+}
+// use data-driven clicks to avoid JSON quoting issues
+document.addEventListener('click',function(e){
+  const btn=e.target.closest('[onclick^="sbPick"]');
+  if(!btn)return;
+  const m=btn.getAttribute('onclick').match(/sbPick\('(\w+)',(\w+)\)/);
+  if(!m)return;
+  const type=m[1],key=m[2];
+  if(type==='color')sbState.color=SB_COLORS.find(c=>c.en===key)||null;
+  else if(type==='animal')sbState.animal=SB_ANIMALS.find(a=>a.en===key)||null;
+  else if(type==='adj')sbState.adj=SB_ADJS.find(d=>d.en===key)||null;
+  renderSentBuilder();
+});
+function sbSpeak(){const {color,animal,adj}=sbState;if(color&&animal&&adj)speak(`The ${color.en} ${animal.en} is ${adj.en}.`);}
+function sbConfirm(){
+  const {color,animal,adj}=sbState;if(!color||!animal||!adj)return;
+  speak(`The ${color.en} ${animal.en} is ${adj.en}.`);playSfx('correct');launchConfetti();
+  sbState.score+=10;sbState.streak++;
+  showToast(`✅ The ${color.en} ${animal.en} is ${adj.en}! +10`);
+  if(userData){trackWordFlipped(color.en);trackWordFlipped(animal.en);trackWordFlipped(adj.en);}
+  sbState.color=null;sbState.animal=null;sbState.adj=null;renderSentBuilder();
+}
+function sbRandom(){
+  sbState.color=SB_COLORS[Math.floor(Math.random()*SB_COLORS.length)];
+  sbState.animal=SB_ANIMALS[Math.floor(Math.random()*SB_ANIMALS.length)];
+  sbState.adj=SB_ADJS[Math.floor(Math.random()*SB_ADJS.length)];
+  renderSentBuilder();
+}
+
+// ===================== SENTENCE MATCH =====================
+const SENT_MATCH_DATA=[
+  {sentence:"The yellow pot is hot.",    options:[{emoji:"🍲",label:"yellow pot",c:true},{emoji:"🐄",label:"brown cow",c:false},{emoji:"🐸",label:"green frog",c:false},{emoji:"🐷",label:"gray pig",c:false}]},
+  {sentence:"The brown cow is fat.",     options:[{emoji:"🐸",label:"green frog",c:false},{emoji:"🐄",label:"brown cow",c:true},{emoji:"🍲",label:"yellow pot",c:false},{emoji:"🦭",label:"gray seal",c:false}]},
+  {sentence:"The green frog is small.",  options:[{emoji:"🐄",label:"brown cow",c:false},{emoji:"🦍",label:"gray gorilla",c:false},{emoji:"🐸",label:"green frog",c:true},{emoji:"🐪",label:"orange camel",c:false}]},
+  {sentence:"The gray seal is happy.",   options:[{emoji:"🦭",label:"gray seal",c:true},{emoji:"🐔",label:"red hen",c:false},{emoji:"🐸",label:"green frog",c:false},{emoji:"🦍",label:"gray gorilla",c:false}]},
+  {sentence:"The red hen is sad.",       options:[{emoji:"🦭",label:"gray seal",c:false},{emoji:"🐪",label:"orange camel",c:false},{emoji:"🦍",label:"gray gorilla",c:false},{emoji:"🐔",label:"red hen",c:true}]},
+  {sentence:"The orange camel is tall.", options:[{emoji:"🐔",label:"red hen",c:false},{emoji:"🐪",label:"orange camel",c:true},{emoji:"🍲",label:"yellow pot",c:false},{emoji:"🐸",label:"green frog",c:false}]},
+  {sentence:"The gray gorilla is big.",  options:[{emoji:"🦭",label:"gray seal",c:false},{emoji:"🐔",label:"red hen",c:false},{emoji:"🦍",label:"gray gorilla",c:true},{emoji:"🐪",label:"orange camel",c:false}]},
+  {sentence:"The yellow yoyo is small.", options:[{emoji:"🪀",label:"yellow yoyo",c:true},{emoji:"🍲",label:"yellow pot",c:false},{emoji:"🐸",label:"green frog",c:false},{emoji:"🐔",label:"red hen",c:false}]},
+  {sentence:"The pink pig is fat.",      options:[{emoji:"🐪",label:"orange camel",c:false},{emoji:"🐷",label:"pink pig",c:true},{emoji:"🦍",label:"gray gorilla",c:false},{emoji:"🐸",label:"green frog",c:false}]},
+  {sentence:"The blue fish is small.",   options:[{emoji:"🐟",label:"blue fish",c:true},{emoji:"🐶",label:"brown dog",c:false},{emoji:"🐦",label:"red bird",c:false},{emoji:"🐱",label:"gray cat",c:false}]}
+];
+let smState={};
+function initSentMatch(){
+  smState={words:shuffle([...SENT_MATCH_DATA]).slice(0,8),idx:0,score:0};
+  renderSentMatch();
+}
+function renderSentMatch(){
+  const wrap=document.getElementById('sentmatch-wrap');
+  if(!wrap)return;
+  const {words,idx,score}=smState;
+  if(idx>=words.length){
+    const pct=Math.round((score/(words.length*10))*100);
+    wrap.innerHTML=`<div class="sm-wrap quiz-result">
+      <div>${pct>=80?'🏆':pct>=50?'😊':'💪'}</div>
+      <span class="big" style="color:var(--primary)">${score}/${words.length*10}</span>
+      <p>${pct>=80?'מצוין! קראת משפטים כמו גדול/ה! 🌟':pct>=50?'כל הכבוד! 👍':'נסו שוב! 💪'}</p>
+      <button class="game-start-btn" onclick="initSentMatch()">🔄 שחק שוב</button></div>`;
+    if(pct>=80)launchConfetti();return;
+  }
+  const item=words[idx];
+  const safe=item.sentence.replace(/'/g,"\\'");
+  speak(item.sentence,0.82);
+  const opts=shuffle([...item.options]);
+  wrap.innerHTML=`<div class="sm-wrap">
+    <div class="type-info">
+      <div style="font-size:13px;color:#aaa">משפט ${idx+1}/${words.length}</div>
+      <div class="s-pill" style="font-size:13px">⭐ ${score}</div>
+    </div>
+    <div class="sm-sentence">
+      <div style="font-size:18px;margin-bottom:6px">🔊 לחץ לשמיעה חוזרת</div>
+      <div class="sm-sentence-text" onclick="speak('${safe}',0.82)" style="cursor:pointer">${item.sentence}</div>
+    </div>
+    <div class="sm-options">
+      ${opts.map((o,i)=>`<div class="sm-opt" id="sm-opt-${i}" onclick="smAnswer(${i},${o.c})">
+        <span class="sm-opt-emoji">${o.emoji}</span>
+        <span class="sm-opt-label">${o.label}</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+function smAnswer(i,correct){
+  document.querySelectorAll('.sm-opt').forEach(b=>b.onclick=null);
+  const el=document.getElementById('sm-opt-'+i);
+  if(correct){
+    el.classList.add('correct');playSfx('correct');speak('Correct!');
+    smState.score+=10;setTimeout(()=>{smState.idx++;renderSentMatch();},900);
+  }else{
+    el.classList.add('wrong');playSfx('wrong');
+    document.querySelectorAll('.sm-opt').forEach(b=>{if(b!==el)b.style.opacity='0.4';});
+    setTimeout(()=>{smState.idx++;renderSentMatch();},1200);
+  }
+}
+
+// ===================== LETTER GAME =====================
+// Based on textbook tasks: first letter, last letter, vowel in middle
+const VOWELS = new Set(['A','E','I','O','U']);
+const ALL_LETTERS = 'ABCDEFGHIJKLMNOPRSTUW'.split('');
+
+// Pool: all words with emoji from vocab
+const LG_POOL = [
+  ...easyWords,...mediumWords,...bodyWords,...schoolWords,
+  ...clothingWords,...transportWords,...objectsWords,...vocab2Words,
+  ...weatherWords,...adjectivesWords
+].filter(w=>w.en && w.en.length>=2 && /^[a-zA-Z]+$/.test(w.en.split(' ')[0]));
+
+let lgState={};
+
+function initLetterGame(){
+  lgState={mode:'first',words:shuffle([...LG_POOL]).slice(0,12),idx:0,score:0};
+  renderLetterGame();
+}
+
+function renderLetterGame(){
+  const wrap=document.getElementById('lettergame-wrap');
+  if(!wrap)return;
+  const {mode,words,idx,score}=lgState;
+  if(idx>=words.length){
+    wrap.innerHTML=`<div class="lg-wrap quiz-result">
+      <div>🔤</div><span class="big">${score}/${words.length*10}</span>
+      <p>${score>=80?'מעולה! 🌟':score>=50?'כל הכבוד! 👍':'נסו שוב! 💪'}</p>
+      <button class="game-start-btn" onclick="initLetterGame()">🔄 שחק שוב</button></div>`;
+    return;
+  }
+  const word=words[idx];
+  const w=word.en.toUpperCase();
+  const letters=w.split('');
+
+  // Build correct answer and distractors based on mode
+  let correct, question, hintDisplay;
+  if(mode==='first'){
+    correct=letters[0];
+    question=`מהי האות הראשונה במילה?`;
+    hintDisplay=`<span style="color:var(--primary);font-size:54px;font-weight:800;font-family:'Baloo 2',cursive">_</span>`+
+      letters.slice(1).map(l=>`<span style="font-size:44px;font-weight:800;font-family:'Baloo 2',cursive;color:#ccc">${l}</span>`).join('');
+  } else if(mode==='last'){
+    correct=letters[letters.length-1];
+    question=`מהי האות האחרונה במילה?`;
+    hintDisplay=letters.slice(0,-1).map(l=>`<span style="font-size:44px;font-weight:800;font-family:'Baloo 2',cursive;color:#ccc">${l}</span>`).join('')+
+      `<span style="color:var(--primary);font-size:54px;font-weight:800;font-family:'Baloo 2',cursive">_</span>`;
+  } else {
+    // vowel mode — find first vowel in word
+    const vi=letters.findIndex(l=>VOWELS.has(l));
+    if(vi===-1){
+      // skip, go next
+      lgState.idx++;
+      renderLetterGame();
+      return;
+    }
+    correct=letters[vi];
+    question=`מהי התנועה (a/e/i/o/u) שנמצאת במילה?`;
+    hintDisplay=letters.map((l,i)=>
+      `<span style="font-size:${i===vi?'54':'44'}px;font-weight:800;font-family:'Baloo 2',cursive;color:${i===vi?'var(--primary)':'#ccc'}">${i===vi?'_':l}</span>`
+    ).join('');
+  }
+
+  // Build letter options: correct + 3 wrong
+  let pool = mode==='vowel'
+    ? [...VOWELS].filter(v=>v!==correct)
+    : ALL_LETTERS.filter(l=>l!==correct);
+  const opts=shuffle([correct,...shuffle(pool).slice(0,3)]);
+
+  wrap.innerHTML=`<div class="lg-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div class="lg-mode-tabs">
+        <div class="lg-mode-btn${mode==='first'?' active':''}" onclick="lgSetMode('first')">אות ראשונה</div>
+        <div class="lg-mode-btn${mode==='last'?' active':''}" onclick="lgSetMode('last')">אות אחרונה</div>
+        <div class="lg-mode-btn${mode==='vowel'?' active':''}" onclick="lgSetMode('vowel')">תנועה a/e/i/o/u</div>
+      </div>
+      <div class="s-pill" style="font-size:13px">⭐ ${score}</div>
+    </div>
+    <div class="lg-word-display">
+      <div class="lg-word-emoji" onclick="speak('${word.en}')" title="לחץ לשמוע" style="cursor:pointer">${word.e}</div>
+      <div class="lg-big-word" onclick="speak('${word.en}')" title="לחץ לשמוע">${hintDisplay}</div>
+      <div class="lg-word-he">${word.he}</div>
+    </div>
+    <div class="lg-question">${question}</div>
+    <div class="lg-letter-options">
+      ${opts.map(l=>`<button class="lg-letter-btn" onclick="lgAnswer(this,'${l}','${correct}')">${l}</button>`).join('')}
+    </div>
+    <div style="text-align:center;margin-top:8px">
+      <button class="shuffle-btn" style="margin:0 auto" onclick="speak('${word.en}')">🔊 שמע שוב</button>
+    </div>
+  </div>`;
+  speak(word.en);
+}
+
+function lgSetMode(m){
+  lgState.mode=m;
+  lgState.words=shuffle([...LG_POOL]).slice(0,12);
+  lgState.idx=0; lgState.score=0;
+  renderLetterGame();
+}
+
+function lgAnswer(btn, answer, correct){
+  document.querySelectorAll('.lg-letter-btn').forEach(b=>b.disabled=true);
+  if(answer===correct){
+    btn.classList.add('correct'); playSfx('correct'); speak('Correct!');
+    lgState.score+=10; trackWordError(lgState.words[lgState.idx].en,false);
+    setTimeout(()=>{lgState.idx++;renderLetterGame();},900);
+  }else{
+    btn.classList.add('wrong'); playSfx('wrong');
+    trackWordError(lgState.words[lgState.idx].en,true);
+    document.querySelectorAll('.lg-letter-btn').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
+    setTimeout(()=>{lgState.idx++;renderLetterGame();},1200);
+  }
+}
+
+function settingMusicToggle(on){
+  if(on){ startMusic(); }else{ stopMusic(); }
+}
+function settingMusicVol(v){
+  musicVol=v/100;
+  if(musicNodes[0]) musicNodes[0].gain.setValueAtTime(musicVol, getAudioCtx().currentTime);
+}
+function settingMusicStyle(s){
+  musicStyle=s;
+  if(musicPlaying){ stopMusic(); startMusic(); }
+}
+function settingSfx(on){ sfxEnabled=on; }
+function settingVoice(on){ voiceEnabled=on; }
+function setTheme(color){
+  document.documentElement.style.setProperty('--primary',color);
+  // Derive lighter version
+  document.documentElement.style.setProperty('--primary-l', color+'22');
+  showToast('🎨 צבע עודכן!');
+}
+</script>
+</body>
+</html>
