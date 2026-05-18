@@ -425,7 +425,7 @@ input[type=range].vol-slider{width:100px;accent-color:var(--primary)}
 .vowel-highlight{color:var(--primary);text-decoration:underline wavy var(--primary)}
 
 /* TOAST */
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:12px 22px;border-radius:30px;font-size:15px;font-weight:700;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;padding:12px 22px;border-radius:30px;font-size:15px;font-weight:700;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* CONFETTI */
@@ -1688,6 +1688,8 @@ function initQuiz(){
 function renderQuizQuestion(){
   if(document.activeElement)document.activeElement.blur();
   const wrap=document.getElementById('quiz-wrap');
+  wrap.querySelectorAll('.q-opt').forEach(b=>{b.style.transition='none';b.classList.remove('correct','wrong');b.disabled=false;});
+  void wrap.offsetHeight;
   const {words,idx,score}=quizState;
   if(idx>=words.length){renderQuizResult();return;}
   const word=words[idx];
@@ -1912,15 +1914,16 @@ function nextCatchRound(){
 
     el.addEventListener('animationend',()=>{
       if(catchState.locked)return;
-      catchState.locked=true;
       if(word.en===correct.en){
         // correct word fell through — lose life
+        catchState.locked=true;
         catchState.lives--;catchState.catchStreak=0;
         updateCatchLives();
         showToast('💨 פספסת: '+correct.en);
         if(catchState.lives<=0){catchState.active=false;setTimeout(()=>endCatch(),600);}
         else{setTimeout(()=>nextCatchRound(),500);}
       }
+      // distractor fell off — just remove it, don't lock the game
     });
     area.appendChild(el);
   });
@@ -2493,6 +2496,8 @@ function initGuess(){
 function renderGuess(){
   if(document.activeElement)document.activeElement.blur();
   const wrap = document.getElementById('guess-wrap');
+  wrap.querySelectorAll('.guess-opt').forEach(b=>{b.style.transition='none';b.classList.remove('correct','wrong');b.disabled=false;});
+  void wrap.offsetHeight;
   const {words, idx, score} = guessState;
   if(idx >= words.length){
     wrap.innerHTML=`<div class="guess-wrap quiz-result">
