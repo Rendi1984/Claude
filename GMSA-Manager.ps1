@@ -699,7 +699,8 @@ function Build-MainForm {
         $gbEnv.Controls.AddRange(@($lbl, $txt))
         $envFields += $txt
     }
-    $envFields[0].Text = (Get-CurrentDomainFQDN) ?? "Not available"
+    $domainResult = Get-CurrentDomainFQDN
+    $envFields[0].Text = if ($domainResult) { $domainResult } else { "Not available" }
     $envFields[1].Text = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
     $envFields[2].Text = $env:COMPUTERNAME
     $envFields[3].Text = "PowerShell $($PSVersionTable.PSVersion)"
